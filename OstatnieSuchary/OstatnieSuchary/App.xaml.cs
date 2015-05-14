@@ -24,6 +24,7 @@ namespace OstatnieSuchary
     /// </summary>
     sealed partial class App : Application
 	{
+		public static GameManager GameContext;
 		/// <summary>
 		/// Allows tracking page views, exceptions and other telemetry through the Microsoft Application Insights service.
 		/// </summary>
@@ -39,6 +40,7 @@ namespace OstatnieSuchary
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+			GameContext = GameManager.Instance;
         }
 
         /// <summary>
