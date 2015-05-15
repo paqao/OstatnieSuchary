@@ -9,7 +9,7 @@ using OstatnieSuchary.Annotations;
 
 namespace OstatnieSuchary.Model
 {
-	abstract class ViewModel : INotifyPropertyChanged
+	public abstract class ViewModel : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 
