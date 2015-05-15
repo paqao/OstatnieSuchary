@@ -42,4 +42,7 @@
   <data name="AppName" xml:space="preserve">
     <value>Suchary</value>
   </data>
+  <data name="TurnNumberText.Text" xml:space="preserve">
+    <value>Kolejka:</value>
+  </data>
 </root>

@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using OstatnieSuchary.ViewModel;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=402347&clcid=0x409
 
@@ -41,6 +42,9 @@ namespace OstatnieSuchary
             this.InitializeComponent();
             this.Suspending += OnSuspending;
 			GameContext = GameManager.Instance;
+			GameContext.Match = new MatchViewModel();
+			GameContext.Match.HomeTeamVM = new TeamViewModel() {TeamName = "DruzynaJeden"};
+			GameContext.Match.AwayTeamVM = new TeamViewModel() {TeamName = "DruzynaDwa"};
         }
 
         /// <summary>

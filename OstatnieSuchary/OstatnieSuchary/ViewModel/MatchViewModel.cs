@@ -11,6 +11,9 @@ namespace OstatnieSuchary.ViewModel
 	{
 		private TeamViewModel _homeTeamVM;
 		private TeamViewModel _awayTeamVM;
+		private long _homeResult;
+		private long _awayResult;
+		private long _turn;
 
 		public TeamViewModel HomeTeamVM
 		{
@@ -20,6 +23,32 @@ namespace OstatnieSuchary.ViewModel
 				if (_homeTeamVM != value)
 				{
 					_homeTeamVM = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public long HomeResult
+		{
+			get { return _homeResult; }
+			set
+			{
+				if (_homeResult != value)
+				{
+					_homeResult = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public long AwayResult
+		{
+			get { return _awayResult; }
+			set
+			{
+				if (_awayResult != value)
+				{
+					_awayResult = value;
 					OnPropertyChanged();
 				}
 			}
@@ -35,6 +64,19 @@ namespace OstatnieSuchary.ViewModel
 				if (_awayTeamVM != value)
 				{
 					_awayTeamVM = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public long Turn
+		{
+			get { return _turn; }
+			set
+			{
+				if (_turn != value)
+				{
+					_turn = value;
 					OnPropertyChanged();
 				}
 			}

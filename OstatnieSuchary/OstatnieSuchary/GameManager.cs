@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OstatnieSuchary.ViewModel;
 
 namespace OstatnieSuchary
 {
@@ -14,6 +15,8 @@ namespace OstatnieSuchary
 		}
 
 		private static GameManager _instance;
+		private MatchViewModel _match;
+
 		public static GameManager Instance
 		{
 			get
@@ -22,6 +25,12 @@ namespace OstatnieSuchary
 					_instance = new GameManager();
 				return _instance;
 			}
+		}
+
+		public MatchViewModel Match
+		{
+			get { return _match; }
+			set { _match = value; }
 		}
 	}
 }
