@@ -7,7 +7,28 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Button x:Name="button" Click="ButtonBase_OnClick" Content="Button" HorizontalAlignment="Left" Margin="183,31,0,0" VerticalAlignment="Top"/>
-    </Grid>
+    <Grid Background="DarkGray">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.6*"></ColumnDefinition>
+			<ColumnDefinition Width="0.4*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.25*"></RowDefinition>
+			<RowDefinition Height="0.25*"></RowDefinition>
+			<RowDefinition Height="0.25*"></RowDefinition>
+			<RowDefinition Height="0.25*"></RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid Grid.Column="1" Grid.RowSpan="4" Background="Aqua">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="0.25*"></RowDefinition>
+				<RowDefinition Height="0.25*"></RowDefinition>
+				<RowDefinition Height="0.25*"></RowDefinition>
+				<RowDefinition Height="0.25*"></RowDefinition>
+			</Grid.RowDefinitions>
+			<Button x:Name="tournament_button" Background="White" Grid.Column="1" Grid.Row="0" Click="ChooseTeam_click" Content="Tournament" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+			<Button x:Name="tournament_button2" Background="White" Grid.Column="1" Grid.Row="1" Content="QuickMatch" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<Button x:Name="tournament_button3" Background="White" Grid.Column="1" Grid.Row="2" Content="Tournament" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<Button x:Name="tournament_button4" Background="White" Grid.Column="1" Grid.Row="3" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" />
+		</Grid>
+	</Grid>
 </Page>
