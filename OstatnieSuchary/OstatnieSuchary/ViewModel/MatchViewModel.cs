@@ -14,6 +14,7 @@ namespace OstatnieSuchary.ViewModel
 		private long _homeResult;
 		private long _awayResult;
 		private long _turn;
+		private Animal _activeAnimal;
 
 		public TeamViewModel HomeTeamVM
 		{
@@ -77,6 +78,19 @@ namespace OstatnieSuchary.ViewModel
 				if (_turn != value)
 				{
 					_turn = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public Animal ActiveAnimal
+		{
+			get { return _activeAnimal; }
+			set
+			{
+				if (_activeAnimal != value)
+				{
+					_activeAnimal = value;
 					OnPropertyChanged();
 				}
 			}

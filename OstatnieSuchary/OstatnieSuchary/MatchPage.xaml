@@ -5,8 +5,13 @@
     xmlns:local="using:OstatnieSuchary"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:converter="using:OstatnieSuchary.Converter" 
+	mc:Ignorable="d">
 
+	<Page.Resources>
+		<converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+	</Page.Resources>
+	
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -15,9 +20,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
         <Grid Grid.ColumnSpan="3" Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*"/>
@@ -47,113 +51,113 @@
 			<TextBlock Grid.Row="1" Grid.Column="4" TextAlignment="Left"  x:Name="Turn" Text="{Binding Turn, Mode=OneWay}"  HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center"/>
         </Grid>
 
-        <Grid x:Name="Board" Grid.Row="1" Grid.Column="1" Background="LawnGreen" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid x:Name="Board" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Stretch">
        
 			<Grid.RowDefinitions>
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="36"/>
                 <!-- 1-5 -->
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
                 <!-- 2 -->
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
 
                 <!-- 3 -->
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
 
                 <!-- 4 -->
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
                 <!-- 5 -->
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
 
                 <!-- 6 -->
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
+                <RowDefinition Height="18"/>
 
-                <RowDefinition Height="2*"/>
+                <RowDefinition Height="36"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
+				<ColumnDefinition Width="18"/>
 
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="18"/>
+                <ColumnDefinition Width="18"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Row="1" Grid.RowSpan="30" Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />
@@ -172,6 +176,23 @@
             <Grid Grid.Row="19" Grid.RowSpan="12" Grid.Column="47" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />
             <Grid Grid.Row="1" Grid.RowSpan="30" Grid.Column="48" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />
         </Grid>
+		
+		<Grid Grid.Column="2" Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+				<RowDefinition Height="50"/>
+			</Grid.RowDefinitions>
+			<Button x:Uid="KickButton" Margin="3" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="PassButton" Margin="3" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="SprintButton"  Margin="3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="DefenceButton" Visibility="{Binding Path=ActiveAnimal.HasBall, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="DashButton" Visibility="{Binding Path=ActiveAnimal.HasBall, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter=Negation, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+			<Button x:Uid="WaitButton" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+		</Grid>
 		<!--<Button Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"/>
         <Button Grid.Row="1" Grid.Column="1" Click="ButtonBase2_OnClick"/>-->
     </Grid>

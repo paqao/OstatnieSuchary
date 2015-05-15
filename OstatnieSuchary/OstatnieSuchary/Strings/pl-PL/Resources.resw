@@ -45,4 +45,22 @@
   <data name="TurnNumberText.Text" xml:space="preserve">
     <value>Kolejka:</value>
   </data>
+  <data name="PassButton.Content" xml:space="preserve">
+    <value>Podaj</value>
+  </data>
+  <data name="KickButton.Content" xml:space="preserve">
+    <value>Strzel</value>
+  </data>
+  <data name="SprintButton.Content" xml:space="preserve">
+    <value>Biegnij</value>
+  </data>
+  <data name="DefenceButton.Content" xml:space="preserve">
+    <value>Broń obszaru</value>
+  </data>
+  <data name="DashButton.Content" xml:space="preserve">
+    <value>Zwód</value>
+  </data>
+  <data name="WaitButton.Content" xml:space="preserve">
+    <value>Czekaj</value>
+  </data>
 </root>
