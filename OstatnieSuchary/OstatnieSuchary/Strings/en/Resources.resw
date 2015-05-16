@@ -63,4 +63,7 @@
   <data name="WaitButton.Content" xml:space="preserve">
     <value>Wait</value>
   </data>
+  <data name="PreparingGame.Text" xml:space="preserve">
+    <value>I am preparing game. Please wait ...</value>
+  </data>
 </root>

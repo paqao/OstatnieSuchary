@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OstatnieSuchary.Annotations;
 using OstatnieSuchary.Model;
 
 namespace OstatnieSuchary.ViewModel
@@ -15,6 +16,32 @@ namespace OstatnieSuchary.ViewModel
 		private long _awayResult;
 		private long _turn;
 		private Animal _activeAnimal;
+
+		private long[,] _fields;
+		private List<FieldItemViewModel> _fieldItemViewModels;
+		private bool _busy;
+
+		public List<FieldItemViewModel> FieldItemViewModels
+		{
+			get
+			{
+				return _fieldItemViewModels;
+			}
+		} 
+
+		public MatchViewModel()
+		{
+			_fields = new long[30,45];
+			_fieldItemViewModels = new List<FieldItemViewModel>();
+			for (int i = 0; i < 30; i++)
+			{
+				for (int j = 0; j < 45; j++)
+				{
+					FieldItemViewModel newFieldItemViewModel = new FieldItemViewModel(this, j, i);
+					this.FieldItemViewModels.Add(newFieldItemViewModel);
+				}
+			}
+		}
 
 		public TeamViewModel HomeTeamVM
 		{
@@ -91,6 +118,19 @@ namespace OstatnieSuchary.ViewModel
 				if (_activeAnimal != value)
 				{
 					_activeAnimal = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public bool Busy
+		{
+			get { return _busy; }
+			set
+			{
+				if (_busy != value)
+				{
+					_busy = value;
 					OnPropertyChanged();
 				}
 			}
