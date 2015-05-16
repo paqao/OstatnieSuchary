@@ -47,8 +47,7 @@ namespace OstatnieSuchary
 			GameContext.TeamSelector = new ChooseTeamViewModel();
 			GameContext.Match.HomeTeamVM = new TeamViewModel() {TeamName = "DruzynaJeden"};
 			GameContext.Match.AwayTeamVM = new TeamViewModel() {TeamName = "DruzynaDwa"};
-			GameContext.Match.ActiveAnimal = new TemplateAnimal("ble", AnimalType.Hippo);
-        }
+		}
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

@@ -11,14 +11,11 @@ namespace OstatnieSuchary.ViewModel
 {
 	public class TeamViewModel : Model.ViewModel
 	{
-        public ObservableCollection<Animal> TeamList { get; set; }
-        private Animal[] _team;
-        int choosedAnimals = 0;
-        
+        public List<Animal> TeamList { get; set; }
+		
 		private string _teamName;
 		private Brush _teamColor;
-
-
+		
 		public string TeamName
 		{
 			get { return _teamName; }
@@ -35,37 +32,45 @@ namespace OstatnieSuchary.ViewModel
 
         public TeamViewModel()
         {
-            _team = new Animal[5];
+	        TeamList = new List<Animal>();
         }
 
         public void AddAnimal(Animal animal)
         {
-            if(choosedAnimals<5)
-            {
-                _team[choosedAnimals] = animal;
-                choosedAnimals++;
-                TeamList = new ObservableCollection<Animal>(_team);
-            }
+	        TeamList.Add(animal);
         }
+
+		private IEnumerator<Animal> _enumerableElements; 
+		public bool MoveNext()
+		{
+			if (_enumerableElements.MoveNext())
+			{
+				GameManager.Instance.Match.ActiveAnimal = _enumerableElements.Current;
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public void StartsTurn()
+		{
+			_enumerableElements = TeamList.OrderByDescending(x => x.Speed).GetEnumerator();
+			MoveNext();
+		}
 
         public void DeleteAnimal(Guid id)
         {
-            for (int i=0; i<4; i++)
-            {
-                if(_team[i].Id.CompareTo(id)==0)
-                {
-                    _team[i] = _team[--choosedAnimals];
-                    TeamList = new ObservableCollection<Animal>(_team);
-                    break;
-                }
-            }
+	        for (int i = this.TeamList.Count - 1; i >= 0; i--)
+	        {
+		        if (TeamList[i].Id == id)
+		        {
+			        TeamList.RemoveAt(i);
+		        }
+	        }
         }
-
-
-
-
 		
-
 		public Brush TeamColor
 		{
 			get { return _teamColor;}

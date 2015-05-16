@@ -17,6 +17,32 @@ namespace OstatnieSuchary.Model
 		private AnimalType _type;
         public Guid Id { get; set; }
 
+		public long PositionX
+		{
+			get { return _positionX; }
+			set
+			{
+				if (_positionX != value)
+				{
+					_positionX = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public long PositionY
+		{
+			get { return _positionY; }
+			set
+			{
+				if (_positionY != value)
+				{
+					_positionY = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
 		protected void LoadImage(string path)
 		{
 			Image = new BitmapImage(new Uri(path));
@@ -39,6 +65,63 @@ namespace OstatnieSuchary.Model
 				await dialog.ShowAsync();
 			});
 
+			SprintCommand = new RelayCommand(x =>
+			{
+				GameManager.Instance.Match.ActionStatus = ActionStatus.Sprint;
+                int range = (int) Math.Sqrt((double)this.Speed/20.0f);
+
+				long actualPos = CalculateActualPosition(PositionX, PositionY);
+				
+				long minY = PositionY - range;
+	
+				for (int i = 0; i <= 2*range; i++)
+				{
+					if (i + minY < 0)
+					{
+						continue;
+					}
+
+					if (i + minY >= 20)
+					{
+						continue;
+					}
+
+					// center = i == range;
+					long delta;
+					if (i <= range)
+					{
+						delta = i;
+					}
+					else
+					{
+						delta = 2*range - i;
+					}
+					long minX = PositionX - delta;
+					long maxX = PositionX + delta;
+
+					
+					for (long j = minX; j <= maxX; j++)
+					{
+						if(j < 0 || j > 30)
+							continue;
+
+						long position = CalculateActualPosition(j, minY + i);
+						
+						if(position == actualPos)
+							continue;
+
+						var currentField = GameManager.Instance.Match.FieldItemViewModels[(int) position];
+						currentField.InSprintRange = true;
+						currentField.IsEnabled = true;
+					}
+				}
+				
+			});
+		}
+
+		private long CalculateActualPosition(long posX, long posY)
+		{
+			return posY * 30 + posX;
 		}
 
 		public string Name
@@ -72,6 +155,19 @@ namespace OstatnieSuchary.Model
 			}
 		}
 
+		public bool IsActive
+		{
+			get { return _isActive; }
+			set
+			{
+				if (_isActive != value)
+				{
+					_isActive = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
 		public decimal Power;
 		public decimal Defence;
 		public decimal Accurance;
@@ -84,6 +180,9 @@ namespace OstatnieSuchary.Model
 		private ICommand _dashButton;
 		private ICommand _waitButton;
 		private BitmapImage _image;
+		private bool _isActive;
+		private long _positionX;
+		private long _positionY;
 
 		public AnimalType Type
 		{
@@ -142,7 +241,10 @@ namespace OstatnieSuchary.Model
 
 		public BitmapImage Image
 		{
-			get { return _image; }
+			get
+			{
+				return _image;
+			}
 			set
 			{
 				if (_image != value)
