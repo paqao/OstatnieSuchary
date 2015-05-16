@@ -36,5 +36,5 @@ namespace OstatnieSuchary
 		{
 			this.Frame.Navigate(typeof (MatchPage));
 		}
-	}
+    }
 }

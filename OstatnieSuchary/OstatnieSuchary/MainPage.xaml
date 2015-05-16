@@ -28,8 +28,9 @@
 			<Button x:Name="tournament_button" Background="White" Grid.Column="1" Grid.Row="0" Click="ChooseTeam_click" Content="Tournament" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 			<Button x:Name="tournament_button2" Background="White" Grid.Column="1" Grid.Row="1" Content="QuickMatch" HorizontalAlignment="Center" VerticalAlignment="Center" />
 			<Button x:Name="tournament_button3" Background="White" Grid.Column="1" Grid.Row="2" Content="Shop" HorizontalAlignment="Center" VerticalAlignment="Center" />
-			<Button x:Name="tournament_button4" Background="White" Grid.Column="1" Grid.Row="3" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<Button Command="Close" x:Name="Exit" Background="White" Grid.Column="1" Grid.Row="3" Content="Exit" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 		</Grid>
-		<Image Source="Assets/logotyp.png" Margin="0,0,0,10" Grid.RowSpan="2"></Image>
+		<Image Source="Assets/logotyp.png" Margin="0,0,0,10" Grid.Row="0" Grid.RowSpan="2"></Image>
+		<Image Source="Assets/allAnimals.png" Grid.Row="2" Grid.RowSpan="2"></Image>
 	</Grid>
 </Page>
