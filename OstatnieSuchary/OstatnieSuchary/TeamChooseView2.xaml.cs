@@ -35,8 +35,11 @@ namespace OstatnieSuchary
 
 		private void choosenAnimalsGridView_OnDrop(object sender, DragEventArgs e)
 		{
-			// dodac animala do kolekcji
-            GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Add(_draggedAnimal);
+            if (GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Count < 5)
+            {
+                GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Add(_draggedAnimal);
+            }
+    
 		}
 
 
