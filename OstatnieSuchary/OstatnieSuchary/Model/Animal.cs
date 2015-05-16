@@ -102,7 +102,7 @@ namespace OstatnieSuchary.Model
 					
 					for (long j = minX; j <= maxX; j++)
 					{
-						if(j < 0 || j > 30)
+						if(j < 0 || j > 29)
 							continue;
 
 						long position = CalculateActualPosition(j, minY + i);
