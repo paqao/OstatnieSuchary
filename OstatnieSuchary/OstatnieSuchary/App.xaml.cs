@@ -44,6 +44,7 @@ namespace OstatnieSuchary
             this.Suspending += OnSuspending;
 			GameContext = GameManager.Instance;
 			GameContext.Match = new MatchViewModel();
+			GameContext.TeamSelector = new ChooseTeamViewModel();
 			GameContext.Match.HomeTeamVM = new TeamViewModel() {TeamName = "DruzynaJeden"};
 			GameContext.Match.AwayTeamVM = new TeamViewModel() {TeamName = "DruzynaDwa"};
 			GameContext.Match.ActiveAnimal = new TemplateAnimal("ble", AnimalType.Hippo);

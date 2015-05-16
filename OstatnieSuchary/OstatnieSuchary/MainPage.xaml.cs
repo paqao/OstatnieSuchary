@@ -29,7 +29,7 @@ namespace OstatnieSuchary
 
         private void ChooseTeam_click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(ChooseTeamPage));
+            this.Frame.Navigate(typeof(TeamChooseView2));
         }
 
 		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

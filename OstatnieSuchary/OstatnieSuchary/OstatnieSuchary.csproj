@@ -116,6 +116,7 @@
       <DependentUpon>TeamChooseView2.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AnimalsCollectionViewModel.cs" />
+    <Compile Include="ViewModel\ChooseTeamViewModel.cs" />
     <Compile Include="ViewModel\FieldItemViewModel.cs" />
     <Compile Include="ViewModel\MatchViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -149,10 +150,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ChooseTeamPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

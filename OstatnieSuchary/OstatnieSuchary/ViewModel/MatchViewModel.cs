@@ -31,11 +31,11 @@ namespace OstatnieSuchary.ViewModel
 
 		public MatchViewModel()
 		{
-			_fields = new long[30,45];
+			_fields = new long[20,30];
 			_fieldItemViewModels = new List<FieldItemViewModel>();
-			for (int i = 0; i < 30; i++)
+			for (int i = 0; i < 20; i++)
 			{
-				for (int j = 0; j < 45; j++)
+				for (int j = 0; j < 30; j++)
 				{
 					FieldItemViewModel newFieldItemViewModel = new FieldItemViewModel(this, j, i);
 					this.FieldItemViewModels.Add(newFieldItemViewModel);
