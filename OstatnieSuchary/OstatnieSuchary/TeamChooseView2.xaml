@@ -7,43 +7,44 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-	<Grid Background="White">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="0.3*"></RowDefinition>
-			<RowDefinition Height="0.3*"></RowDefinition>
-			<RowDefinition Height="0.3*"></RowDefinition>
-			<RowDefinition Height="0.1*"></RowDefinition>
-		</Grid.RowDefinitions>
-		<TextBlock VerticalAlignment="Top" Text="Complete your team !" HorizontalAlignment="Center"></TextBlock>
-		<GridView x:Name="aaa" Grid.Row="0" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="100"
-                  Background="Coral" ItemsSource="{Binding TemplateAnimals}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,12,0,-12">
+        
+        <GridView x:Name="aaa" 
+                  HorizontalAlignment="Left" 
+                  Margin="415,93,0,0" VerticalAlignment="Top" 
+                  Width="376" Height="74" Background="AliceBlue" ItemsSource="{Binding TemplateAnimals}">
 			<GridView.ItemTemplate >
 				<DataTemplate >
-					<Image DragStarting="UIElement_OnDragStarting" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
-				</DataTemplate>
+                    <Image DragStarting="UIElement_OnDragStarting" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
+                </DataTemplate>
 			</GridView.ItemTemplate>
-		</GridView>
-		<TextBlock Grid.Row="1" VerticalAlignment="Top" Text="Player 1 drag/drop 5 animals" HorizontalAlignment="Center"></TextBlock>
-		<GridView AllowDrop="True" Grid.Row="1" MinWidth="300" VerticalAlignment="Center" HorizontalAlignment="Center" MinHeight="100"
+        </GridView>
+            
+        <GridView AllowDrop="True" 
                   Drop="choosenAnimalsGridView_OnDrop" x:Name="choosenAnimalsGridView" 
-                  Background="Coral" ItemsSource="{Binding ChoosenAnimals}" >
-		
-			<GridView.ItemTemplate >
-				<DataTemplate >
-					<Image DragStarting="UIElement_OnDragStartingDelete" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
-				</DataTemplate>
-			</GridView.ItemTemplate>
-		</GridView>
-		<TextBlock Grid.Row="2" VerticalAlignment="Top" Text="Player 2 drag/drop 5 animals" HorizontalAlignment="Center"></TextBlock>
-		<GridView AllowDrop="True" Grid.Row="2"  Grid.Column="0" MinWidth="300" HorizontalAlignment="Center" VerticalAlignment="Center" MinHeight="100"
-                  Drop="choosenAnimalsGridView_OnDrop" x:Name="choosenAnimalsGridView2" 
-                  Background="Coral" ItemsSource="{Binding ChoosenAnimals}" >
-			<GridView.ItemTemplate >
-				<DataTemplate >
-					<Image DragStarting="UIElement_OnDragStartingDelete" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
-				</DataTemplate>
-			</GridView.ItemTemplate>
-		</GridView>
-
-	</Grid>
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="376" Margin="127,321,0,0" 
+                  Background="Yellow" ItemsSource="{Binding ChoosenAnimals}" SelectionChanged="choosenAnimalsGridView_SelectionChanged" >
+            <GridView.ItemTemplate >
+                <DataTemplate >
+                    <Image DragStarting="UIElement_OnDragStartingDelete" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <GridView AllowDrop="True" 
+        	Drop="choosenAnimalsGridView_OnDrop2" x:Name="choosenAnimalsGridView_Copy2" 
+        	HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="376" Margin="727,321,0,0" 
+        	Background="MediumTurquoise" ItemsSource="{Binding ChoosenAnimals2}" SelectionChanged="choosenAnimalsGridView_Copy2_SelectionChanged" >
+            <GridView.ItemTemplate >
+                <DataTemplate >
+                    <Image DragStarting="UIElement_OnDragStartingDelete2" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <Button x:Name="continueButton" Content="GRAJ" HorizontalAlignment="Left" Margin="998,558,0,0" VerticalAlignment="Top" Height="56" Width="140" IsEnabled="False" Click="continueButton_Click"/>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="436,64,0,0" TextWrapping="Wrap" Text="Wybierzcie po 5 zawodników do swojej drużyny." VerticalAlignment="Top" RenderTransformOrigin="1.403,2.25"/>
+        <FlipView x:Name="flipView" HorizontalAlignment="Left" Height="2" Margin="560,64,0,0" VerticalAlignment="Top" Width="37"/>
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="258,284,0,0" TextWrapping="Wrap" Text="Gracz pierwszy" VerticalAlignment="Top" Width="158"/>
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="881,284,0,0" TextWrapping="Wrap" Text="Gracz drugi" VerticalAlignment="Top" RenderTransformOrigin="2.774,0.6"/>
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="560,576,0,0" TextWrapping="Wrap" Text="Aby rozpocząć grę naciśnij przycisk GRAJ" VerticalAlignment="Top"/>
+    </Grid>
 </Page>
