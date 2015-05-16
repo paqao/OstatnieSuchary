@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using OstatnieSuchary.Model;
 using OstatnieSuchary.ViewModel;
@@ -51,13 +52,27 @@ namespace OstatnieSuchary
 				foreach (var field in _viewModel.FieldItemViewModels)
 				{
 					Button button = new Button();
+					
 					button.VerticalAlignment = VerticalAlignment.Stretch;
 					button.HorizontalAlignment = HorizontalAlignment.Stretch;
 
-					button.Content = field.ToString();
+					/*if (field.PositionX == 3 && field.PositionY == 11)
+					{
+						//BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/hippo200.png"));
 
+						//Binding binding = new Binding();
+						//binding.Mode = BindingMode.TwoWay;
+						//binding.Path = new PropertyPath("AnimalAtField.Image");
+						//binding.Source = field;
+
+						//button.SetBinding(ContentProperty, binding );
+					}*/
+					
 					button.BorderThickness = new Thickness(1, 1, 1, 1);
 					button.BorderBrush = new SolidColorBrush(Colors.AliceBlue);
+				
+
+
 					button.Background = new SolidColorBrush(Colors.LawnGreen);
 
 					Board.Children.Add(button);
@@ -72,16 +87,5 @@ namespace OstatnieSuchary
 				_viewModel.Busy = false;
 			});
 		}
-
-
-		/*private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
-		{
-			_viewModel.ActiveAnimal = new TemplateAnimal("ble", AnimalType.Hippo);
-			_viewModel.ActiveAnimal.KickCommand = new RelayCommand(async x =>
-			{
-				MessageDialog dialog = new MessageDialog("Pass2");
-				await dialog.ShowAsync();
-			});
-		}*/
 	}
 }

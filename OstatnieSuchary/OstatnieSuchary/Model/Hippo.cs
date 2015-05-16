@@ -8,8 +8,11 @@ namespace OstatnieSuchary.Model
 {
     class Hippo : Animal
     {
+        string imgPath = "ms-appx:///Assets/hippo200.png";
+
         public Hippo(string name) : base(name, AnimalType.Hippo)
-		{
+        {
+	        LoadImage(imgPath);
         }
     }
 }

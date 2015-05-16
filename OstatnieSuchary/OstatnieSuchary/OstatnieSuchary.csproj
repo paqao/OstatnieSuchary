@@ -94,9 +94,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ChooseTeamPage.xaml.cs">
-      <DependentUpon>ChooseTeamPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="MainPage.xaml.cs">
@@ -115,7 +112,11 @@
     <Compile Include="Model\ViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamChooseView2.xaml.cs">
+      <DependentUpon>TeamChooseView2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AnimalsCollectionViewModel.cs" />
+    <Compile Include="ViewModel\ChooseTeamViewModel.cs" />
     <Compile Include="ViewModel\FieldItemViewModel.cs" />
     <Compile Include="ViewModel\MatchViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -151,10 +152,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="ChooseTeamPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,7 +160,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TeamChooseView.xaml">
+    <Page Include="TeamChooseView2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

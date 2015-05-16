@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Popups;
+using Windows.UI.Xaml.Media.Imaging;
 using OstatnieSuchary.ViewModel;
 
 namespace OstatnieSuchary.Model
@@ -15,6 +16,11 @@ namespace OstatnieSuchary.Model
 		private string _name;
 		private AnimalType _type;
         public Guid Id { get; set; }
+
+		protected void LoadImage(string path)
+		{
+			Image = new BitmapImage(new Uri(path));
+		}
 
 		public Animal(string name, AnimalType type )
 		{
@@ -77,6 +83,7 @@ namespace OstatnieSuchary.Model
 		private ICommand _defenceButton;
 		private ICommand _dashButton;
 		private ICommand _waitButton;
+		private BitmapImage _image;
 
 		public AnimalType Type
 		{
@@ -128,6 +135,19 @@ namespace OstatnieSuchary.Model
 				if (_sprintCommand != value)
 				{
 					_sprintCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public BitmapImage Image
+		{
+			get { return _image; }
+			set
+			{
+				if (_image != value)
+				{
+					_image = value;
 					OnPropertyChanged();
 				}
 			}

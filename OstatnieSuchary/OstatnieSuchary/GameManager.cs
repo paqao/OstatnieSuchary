@@ -16,6 +16,7 @@ namespace OstatnieSuchary
 
 		private static GameManager _instance;
 		private MatchViewModel _match;
+		private ChooseTeamViewModel _teamSelector;
 
 		public static GameManager Instance
 		{
@@ -32,5 +33,10 @@ namespace OstatnieSuchary
 			get { return _match; }
 			set { _match = value; }
 		}
+
+		public ChooseTeamViewModel TeamSelector
+		{
+			get { return _teamSelector; }
+			set { _teamSelector = value; } }
 	}
 }

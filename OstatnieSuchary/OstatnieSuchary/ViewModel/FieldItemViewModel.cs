@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Xaml.Media.Imaging;
+using OstatnieSuchary.Model;
 
 namespace OstatnieSuchary.ViewModel
 {
@@ -14,12 +16,30 @@ namespace OstatnieSuchary.ViewModel
 		private int positionX;
 		private int positionY;
 		private ICommand _fieldCommand;
+		private Animal _animalAtField;
+		private BitmapImage _image;
 
 		public FieldItemViewModel(MatchViewModel matchViewModel, int positionX, int positionY)
 		{
 			_matchViewModel = matchViewModel;
 			this.positionX = positionX;
 			this.positionY = positionY;
+			this.AnimalAtField = new Hippo("moj hipp");
+		}
+
+
+
+		public Animal AnimalAtField
+		{
+			get { return _animalAtField; }
+			set
+			{
+				if (_animalAtField != value)
+				{
+					_animalAtField = value;
+					OnPropertyChanged();
+				}
+			}
 		}
 
 		public ICommand FieldCommand
