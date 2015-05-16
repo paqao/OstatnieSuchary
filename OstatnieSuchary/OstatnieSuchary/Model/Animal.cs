@@ -48,6 +48,20 @@ namespace OstatnieSuchary.Model
 			Image = new BitmapImage(new Uri(path));
 		}
 
+		public BallViewModel Ball
+		{
+			get { return _ball; }
+			set
+			{
+				if (_ball != value)
+				{
+					_ball = value;
+					OnPropertyChanged();
+					HasBall = _ball != null;
+				}
+			}
+		}
+
 		public Animal(string name, AnimalType type )
 		{
 			Name = name;
@@ -277,6 +291,7 @@ namespace OstatnieSuchary.Model
 		private long _positionX;
 		private long _positionY;
 		private bool _isAtSemiAction;
+		private BallViewModel _ball;
 
 		public AnimalType Type
 		{

@@ -18,16 +18,16 @@ namespace OstatnieSuchary.Converter
 
 			var color = Colors.White;
 
+			if (field.ContainsBall)
+			{
+				color = Colors.OrangeRed;
+			}
+
 			if (field != null && field.AnimalAtField != null)
 			{
 				if (field.AnimalAtField.HasBall)
 				{
 					color = Colors.Blue;
-				}
-
-				if (field.ContainsBall)
-				{
-					color = Colors.OrangeRed;
 				}
 			}
 

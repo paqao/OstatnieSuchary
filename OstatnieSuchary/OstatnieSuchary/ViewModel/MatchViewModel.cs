@@ -82,6 +82,28 @@ namespace OstatnieSuchary.ViewModel
 			_activeTeam = HomeTeamVM;
 			team1.StartsTurn();
 			EndTurn();
+
+			_ballViewModel = new BallViewModel();
+			_activeAnimal.Ball = _ballViewModel;
+			_ballViewModel.PositionX = (int)_activeAnimal.PositionX;
+			_ballViewModel.PositionY = (int) _activeAnimal.PositionY;
+			_fieldItemViewModels[30*_ballViewModel.PositionY + _ballViewModel.PositionX].BallAtField = BallViewModel;
+		}
+
+		public BallViewModel BallViewModel
+		{
+			get
+			{
+				return _ballViewModel;
+			}
+			set
+			{
+				if (_ballViewModel != value)
+				{
+					_ballViewModel = value;
+					OnPropertyChanged();
+				}
+			}
 		}
 
 		private TeamViewModel _activeTeam;

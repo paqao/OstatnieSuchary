@@ -19,6 +19,7 @@ namespace OstatnieSuchary.ViewModel
 		private int positionY;
 		private ICommand _fieldCommand;
 		private Animal _animalAtField;
+		private BallViewModel _ballAtField;
 		private BitmapImage _image;
 		private bool _inSprintRange;
 		private bool _isEnabled;
@@ -44,12 +45,28 @@ namespace OstatnieSuchary.ViewModel
 				case ActionStatus.SprintBeforePass:
 				case ActionStatus.Sprint:
 				{
-					long previousX = GameManager.Instance.Match.ActiveAnimal.PositionX;
-					long previousY = GameManager.Instance.Match.ActiveAnimal.PositionY;
+					var activeAnimal = GameManager.Instance.Match.ActiveAnimal;
+					long previousX = activeAnimal.PositionX;
+					long previousY = activeAnimal.PositionY;
                     GameManager.Instance.Match.FieldItemViewModels[(int)(previousX + 30* previousY)].AnimalAtField = null;
+					if (activeAnimal.HasBall)
+					{
+						GameManager.Instance.Match.FieldItemViewModels[(int)(previousX + 30 * previousY)].BallAtField = null;
+					}
 					GameManager.Instance.Match.ActiveAnimal.PositionX = this.PositionX;
 					GameManager.Instance.Match.ActiveAnimal.PositionY = this.PositionY;
-					this.AnimalAtField = GameManager.Instance.Match.ActiveAnimal;
+					this.AnimalAtField = activeAnimal;
+					if (activeAnimal.HasBall)
+					{
+						GameManager.Instance.Match.FieldItemViewModels[(int) (PositionX + 30*PositionY)].BallAtField = activeAnimal.Ball;
+						activeAnimal.Ball.PositionY = PositionY;
+						activeAnimal.Ball.PositionX = PositionX;
+					}
+					else
+					{
+						activeAnimal.Ball = BallAtField;
+					}
+
 					GameManager.Instance.Match.RefreshState();
 					if (match.ActionStatus == ActionStatus.Sprint)
 					{
@@ -71,9 +88,49 @@ namespace OstatnieSuchary.ViewModel
 				case ActionStatus.Pass:
 				{
 					match.ActionStatus = ActionStatus.None;
+
+					long previousX = GameManager.Instance.Match.BallViewModel.PositionX;
+					long previousY = GameManager.Instance.Match.BallViewModel.PositionY;
+
+					GameManager.Instance.Match.ActiveAnimal.Ball = null;
+					GameManager.Instance.Match.ActiveAnimal.IsAtSemiAction = false;
+					GameManager.Instance.Match.BallViewModel.PositionX = PositionX;
+					GameManager.Instance.Match.BallViewModel.PositionY = PositionY;
+					
+					var previousField = GameManager.Instance.Match.FieldItemViewModels[(int)(previousX + 30 * previousY)];
+					previousField.BallAtField = null;
+
+					var destinationField = GameManager.Instance.Match.FieldItemViewModels[(int) (PositionX + 30*PositionY)];
+
+					destinationField.BallAtField = GameManager.Instance.Match.BallViewModel;
 					GameManager.Instance.Match.RefreshState();
+
+					if (destinationField.AnimalAtField != null)
+					{
+						destinationField.AnimalAtField.Ball = BallAtField;
+					}
+
 					GameManager.Instance.Match.EndTurn();
 					break;
+				}
+			}
+		}
+
+		public BallViewModel BallAtField
+		{
+			get
+			{
+				return _ballAtField;
+			}
+			set
+			{
+				if (_ballAtField != value)
+				{
+					_ballAtField = value;
+					OnPropertyChanged();
+					OnPropertyChanged("ContainsBall");
+					OnPropertyChanged("Instance");
+					OnPropertyChanged("Image");
 				}
 			}
 		}
@@ -181,15 +238,7 @@ namespace OstatnieSuchary.ViewModel
 
 		public bool ContainsBall
 		{
-			get { return _containsBall; }
-			set
-			{
-				if (_containsBall != value)
-				{
-					_containsBall = value;
-					OnPropertyChanged();
-				}
-			}
+			get { return BallAtField != null; }
 		}
 
 		public bool InPassRange
