@@ -10,6 +10,7 @@ namespace OstatnieSuchary.Model
     {
         public Hippo(string name) : base(name, AnimalType.Hippo)
 		{
+            string imgPath = "../Assets/hippo200.png";
         }
     }
 }
