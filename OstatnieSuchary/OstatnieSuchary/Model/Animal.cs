@@ -36,12 +36,25 @@ namespace OstatnieSuchary.Model
 		}
 
 		public decimal Speed;
-		public bool HasBall;
+
+		public bool HasBall
+		{
+			get { return _hasBall; }
+			set
+			{
+				if (_hasBall != value)
+				{
+					_hasBall = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 
 		public decimal Power;
 		public decimal Defence;
 		public decimal Accurance;
 		public decimal Dash;
+		private bool _hasBall;
 
 		public AnimalType Type
 		{
