@@ -132,14 +132,18 @@
     </AppxManifest>
     <None Include="ApplicationInsights.config" />
     <None Include="OstatnieSuchary_TemporaryKey.pfx" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <PRIResource Include="Strings\en\Resources.resw" />
     <PRIResource Include="Strings\pl-PL\Resources.resw" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\allAnimals.png" />
     <Content Include="Assets\hippo200.png" />
     <Content Include="Assets\lemur200.png" />
     <Content Include="Assets\lion200.png" />
+    <Content Include="Assets\logotyp.png" />
     <Content Include="Assets\monkey200.png" />
     <Content Include="Assets\penguin200.png" />
     <Content Include="Properties\Default.rd.xml" />
@@ -203,8 +207,26 @@
     <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="BehaviorsXamlSDKManaged, Version=12.0">
-      <Name>BehaviorsXamlSDKManaged</Name>
+    <SDKReference Include="Microsoft.NET.CoreRuntime, Version=1.0">
+      <Name>Microsoft .NET Core Runtime Package for Windows</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs.AppLocal, Version=14.0">
+      <Name>Microsoft Visual C++  AppLocal Runtime Package for Windows UAP</Name>
+    </SDKReference>
+    <SDKReference Include="MSTestFramework.Universal, Version=14.0">
+      <Name>MSTest for Managed Projects</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsDesktop, Version=10.0.10069.0">
+      <Name>Microsoft Desktop Extension SDK for Universal App Platform</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsIoT, Version=10.0.10069.0">
+      <Name>Windows IoT Extension SDK</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsMobile, Version=10.0.0.1">
+      <Name>Microsoft Mobile Extension SDK for Universal App Platform</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsTeam, Version=10.0.10069.0">
+      <Name>Windows Team Extension SDK</Name>
     </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

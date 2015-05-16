@@ -17,6 +17,9 @@ namespace OstatnieSuchary
 		private static GameManager _instance;
 		private MatchViewModel _match;
 		private ChooseTeamViewModel _teamSelector;
+        private ChooseTeamViewModel _chooseTeamViewModel;
+
+        public int animalsInTeam = 5;
 
 		public static GameManager Instance
 		{
@@ -34,9 +37,17 @@ namespace OstatnieSuchary
 			set { _match = value; }
 		}
 
-		public ChooseTeamViewModel TeamSelector
-		{
-			get { return _teamSelector; }
-			set { _teamSelector = value; } }
-	}
+ 
+        public ChooseTeamViewModel TeamSelector
+        {
+            get { return _teamSelector; }
+            set { _teamSelector = value; }
+        }
+
+        public ChooseTeamViewModel ChooseTeamViewModel
+        {
+            get { return _chooseTeamViewModel; }
+            set { _chooseTeamViewModel = value; }
+        }
+    }
 }

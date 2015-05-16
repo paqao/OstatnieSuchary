@@ -8,6 +8,7 @@ using Windows.UI.Popups;
 using OstatnieSuchary.Annotations;
 using OstatnieSuchary.Model;
 
+
 namespace OstatnieSuchary.ViewModel
 {
 	public class MatchViewModel : Model.ViewModel
