@@ -21,8 +21,15 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,12,0,-12">
-        <GridView x:Name="gridView" HorizontalAlignment="Left" Margin="70,72,0,0" VerticalAlignment="Top" Width="376" Height="113" Background="AliceBlue">
-            <Image Width="50" Height="50" CanDrag="True" Source = "{Binding Path=imgPath}"></Image>
+        <GridView x:Name="gridView" 
+                  HorizontalAlignment="Left" 
+                  Margin="70,72,0,0" VerticalAlignment="Top" 
+                  Width="376" Height="113" Background="AliceBlue">
+            <Image Width="50" Height="50" 
+                   CanDrag="True" 
+                   Source = "{Binding Path=imgPath}">
+                
+            </Image>
         </GridView>
 
         <GridView x:Name="choosenAnimalsGridView" HorizontalAlignment="Left" Height="66" Margin="70,228,0,0" VerticalAlignment="Top" Width="376" Background="Lavender"/>

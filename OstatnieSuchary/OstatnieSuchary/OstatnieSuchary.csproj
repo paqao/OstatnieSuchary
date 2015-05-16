@@ -161,10 +161,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TeamChooseView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="TeamChooseView2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
