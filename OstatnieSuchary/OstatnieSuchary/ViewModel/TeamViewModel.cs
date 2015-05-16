@@ -13,8 +13,21 @@ namespace OstatnieSuchary.ViewModel
         public ObservableCollection<Animal> TeamList { get; set; }
         private Animal[] _team;
         int choosedAnimals = 0;
+        
+        private string _teamName;
 
-        public string TeamName { get; set; }
+        public string TeamName
+        {
+            get { return _teamName; }
+            set
+            {
+                if (_teamName != value)
+                {
+                    _teamName = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public Guid ID { get; set; }
 
         public TeamViewModel(string teamName)
@@ -49,19 +62,6 @@ namespace OstatnieSuchary.ViewModel
 
 
 
-		private string _teamName;
-
-		public string TeamName
-		{
-			get { return _teamName; }
-			set
-			{
-				if (_teamName != value)
-				{
-					_teamName = value;
-					OnPropertyChanged();
-				}
-			}
-		}
+		
 	}
 }
