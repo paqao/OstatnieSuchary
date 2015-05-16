@@ -4,6 +4,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.UI.Popups;
+using OstatnieSuchary.ViewModel;
 
 namespace OstatnieSuchary.Model
 {
@@ -17,6 +20,19 @@ namespace OstatnieSuchary.Model
 		{
 			Name = name;
 			Type = type;
+
+			KickCommand = new RelayCommand(async x =>
+			{
+				MessageDialog dialog = new MessageDialog("Kick");
+				await dialog.ShowAsync();
+			});
+
+			PassCommand = new RelayCommand(async x =>
+			{
+				MessageDialog dialog = new MessageDialog("Pass");
+				await dialog.ShowAsync();
+			});
+
 		}
 
 		public string Name
@@ -55,6 +71,12 @@ namespace OstatnieSuchary.Model
 		public decimal Accurance;
 		public decimal Dash;
 		private bool _hasBall;
+		private ICommand _kickCommand;
+		private ICommand _passCommand;
+		private ICommand _sprintCommand;
+		private ICommand _defenceButton;
+		private ICommand _dashButton;
+		private ICommand _waitButton;
 
 		public AnimalType Type
 		{
@@ -71,7 +93,85 @@ namespace OstatnieSuchary.Model
 				}
 			}
 		}
-	}
+
+		public ICommand KickCommand
+		{
+			get { return _kickCommand; }
+			set
+			{
+				if (_kickCommand != value)
+				{
+					_kickCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public ICommand PassCommand
+		{
+			get { return _passCommand; }
+			set
+			{
+				if (_passCommand != value)
+				{
+					_passCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public ICommand SprintCommand
+		{
+			get { return _sprintCommand; }
+			set
+			{
+				if (_sprintCommand != value)
+				{
+					_sprintCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public ICommand DefenceButton
+		{
+			get { return _defenceButton; }
+			set
+			{
+				if (_defenceButton != value)
+				{
+					_defenceButton = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public ICommand DashButton
+		{
+			get { return _dashButton; }
+			set
+			{
+				if (_dashButton != value)
+				{
+					_dashButton = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public ICommand WaitButton
+		{
+			get { return _waitButton; }
+			set
+			{
+				if (_waitButton != value)
+				{
+					_waitButton = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+    }
 
 	public enum AnimalType
 	{

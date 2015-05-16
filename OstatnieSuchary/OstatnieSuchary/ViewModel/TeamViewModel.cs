@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.Xaml.Media;
 
 namespace OstatnieSuchary.ViewModel
 {
@@ -14,26 +15,27 @@ namespace OstatnieSuchary.ViewModel
         private Animal[] _team;
         int choosedAnimals = 0;
         
-        private string _teamName;
+		private string _teamName;
+		private Brush _teamColor;
 
-        public string TeamName
-        {
-            get { return _teamName; }
-            set
-            {
-                if (_teamName != value)
-                {
-                    _teamName = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+
+		public string TeamName
+		{
+			get { return _teamName; }
+			set
+			{
+				if (_teamName != value)
+				{
+					_teamName = value;
+					OnPropertyChanged();
+				}
+			}
+		}
         public Guid ID { get; set; }
 
-        public TeamViewModel(string teamName)
+        public TeamViewModel()
         {
             _team = new Animal[5];
-            TeamName = teamName;
         }
 
         public void AddAnimal(Animal animal)
@@ -63,5 +65,18 @@ namespace OstatnieSuchary.ViewModel
 
 
 		
+
+		public Brush TeamColor
+		{
+			get { return _teamColor;}
+			set
+			{
+				if (_teamColor != value)
+				{
+					_teamColor = value;
+					OnPropertyChanged();
+				}
+			}
+		}
 	}
 }
