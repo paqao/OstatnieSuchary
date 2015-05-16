@@ -14,6 +14,7 @@ namespace OstatnieSuchary.Model
 	{
 		private string _name;
 		private AnimalType _type;
+        public Guid Id { get; set; }
 
 		public Animal(string name, AnimalType type )
 		{

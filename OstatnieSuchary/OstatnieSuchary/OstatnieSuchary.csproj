@@ -103,10 +103,16 @@
       <DependentUpon>MatchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Animal.cs" />
+    <Compile Include="Model\Lion.cs" />
+    <Compile Include="Model\Lemur.cs" />
+    <Compile Include="Model\Pinguins.cs" />
+    <Compile Include="Model\Hippo.cs" />
+    <Compile Include="Model\Monkey.cs" />
     <Compile Include="Model\TemplateAnimal.cs" />
     <Compile Include="Model\ViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\AnimalsCollectionViewModel.cs" />
     <Compile Include="ViewModel\FieldItemViewModel.cs" />
     <Compile Include="ViewModel\MatchViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
@@ -149,6 +155,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MatchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeamChooseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
