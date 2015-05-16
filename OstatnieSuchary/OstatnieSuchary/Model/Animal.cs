@@ -115,7 +115,6 @@ namespace OstatnieSuchary.Model
 						currentField.IsEnabled = true;
 					}
 				}
-				
 			});
 		}
 

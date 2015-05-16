@@ -48,7 +48,8 @@ namespace OstatnieSuchary.ViewModel
 					GameManager.Instance.Match.ActiveAnimal.PositionY = this.PositionY;
 					GameManager.Instance.Match.RefreshState();
 					this.AnimalAtField = GameManager.Instance.Match.ActiveAnimal;
-					match.ActionStatus =ActionStatus.None; 
+					match.ActionStatus =ActionStatus.None;
+					GameManager.Instance.Match.EndTurn();
 					break;
 				}
 			}
@@ -158,6 +159,11 @@ namespace OstatnieSuchary.ViewModel
 		public override string ToString()
 		{
 			return positionX + " " + positionY;
+		}
+
+		public void Refresh()
+		{
+			OnPropertyChanged("Instance");
 		}
 	}
 }

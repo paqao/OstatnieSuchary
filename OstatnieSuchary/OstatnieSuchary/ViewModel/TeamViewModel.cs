@@ -37,7 +37,8 @@ namespace OstatnieSuchary.ViewModel
 
         public void AddAnimal(Animal animal)
         {
-	        TeamList.Add(animal);
+			GameManager.Instance.Match.FieldItemViewModels[(int)(animal.PositionX + animal.PositionY * 30)].AnimalAtField = animal;
+			TeamList.Add(animal);
         }
 
 		private IEnumerator<Animal> _enumerableElements; 
@@ -45,7 +46,20 @@ namespace OstatnieSuchary.ViewModel
 		{
 			if (_enumerableElements.MoveNext())
 			{
+				if (GameManager.Instance.Match.ActiveAnimal != null)
+				{
+					var prev = GameManager.Instance.Match.ActiveAnimal;
+					prev.IsActive = false;
+					var field = GameManager.Instance.Match.FieldItemViewModels[(int) (prev.PositionY*30 + prev.PositionX)];
+					field.Refresh();
+				}
+
 				GameManager.Instance.Match.ActiveAnimal = _enumerableElements.Current;
+			
+				var prev2 = GameManager.Instance.Match.ActiveAnimal;
+				prev2.IsActive = true;
+				var field2 = GameManager.Instance.Match.FieldItemViewModels[(int)(prev2.PositionY * 30 + prev2.PositionX)];
+				field2.Refresh();
 				return true;
 			}
 			else
@@ -57,7 +71,6 @@ namespace OstatnieSuchary.ViewModel
 		public void StartsTurn()
 		{
 			_enumerableElements = TeamList.OrderByDescending(x => x.Speed).GetEnumerator();
-			MoveNext();
 		}
 
         public void DeleteAnimal(Guid id)

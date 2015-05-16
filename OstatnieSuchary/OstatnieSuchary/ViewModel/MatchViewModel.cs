@@ -34,6 +34,8 @@ namespace OstatnieSuchary.ViewModel
 		{
 			_fields = new long[20,30];
 			_fieldItemViewModels = new List<FieldItemViewModel>();
+
+			Turn = 1;
 			for (int i = 0; i < 20; i++)
 			{
 				for (int j = 0; j < 30; j++)
@@ -42,19 +44,58 @@ namespace OstatnieSuchary.ViewModel
 					this.FieldItemViewModels.Add(newFieldItemViewModel);
 				}
 			}
+			
+			
+		}
 
+		public void Initialize()
+		{
+			TeamViewModel team1 = new TeamViewModel();
 			Animal ani = new Hippo("moj hippo");
 
-			_fieldItemViewModels[37].AnimalAtField = ani;
 			ani.PositionX = 7;
 			ani.PositionY = 1;
 			ani.IsActive = true;
-			this.ActiveAnimal = ani;
+			team1.AddAnimal(ani);
 
 
 			ani = new Hippo("moj hippo2");
+			ani.PositionX = 13;
+			ani.PositionY = 7;
+			team1.AddAnimal(ani);
 
-			_fieldItemViewModels[120].AnimalAtField = ani;
+
+			HomeTeamVM = team1;
+
+			#region team 2
+			TeamViewModel team2 = new TeamViewModel();
+			Animal ani2 = new Hippo("moj hippo");
+
+			ani2.PositionX = 25;
+			ani2.PositionY = 11;
+			team2.AddAnimal(ani2);
+			AwayTeamVM = team2;
+
+			#endregion
+			_activeTeam = HomeTeamVM;
+			team1.StartsTurn();
+			EndTurn();
+		}
+
+		private TeamViewModel _activeTeam;
+		public void EndTurn()
+		{
+			bool tryNext = _activeTeam.MoveNext();
+			if (!tryNext)
+			{
+				if (_activeTeam == AwayTeamVM)
+				{
+					Turn++;
+				}
+				_activeTeam = _activeTeam == AwayTeamVM ? HomeTeamVM : AwayTeamVM;
+				_activeTeam.StartsTurn();
+				_activeTeam.MoveNext();
+			}
 		}
 
 		public TeamViewModel HomeTeamVM
