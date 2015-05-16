@@ -8,10 +8,11 @@ namespace OstatnieSuchary.Model
 {
     class Pinguins : Animal
     {
-        string imgPath = "../Assets/penguin200.png";
+        string imgPath = "ms-appx:///Assets/penguin200.png";
 
         public Pinguins(string name) : base(name, AnimalType.Pinguins)
-		{
+        {
+            LoadImage(imgPath);
         }
     }
 }
