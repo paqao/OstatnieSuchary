@@ -112,6 +112,9 @@
     <Compile Include="Model\ViewModel.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamChooseView2.xaml.cs">
+      <DependentUpon>TeamChooseView2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModel\AnimalsCollectionViewModel.cs" />
     <Compile Include="ViewModel\FieldItemViewModel.cs" />
     <Compile Include="ViewModel\MatchViewModel.cs" />
@@ -158,7 +161,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TeamChooseView.xaml">
+    <Page Include="TeamChooseView2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
