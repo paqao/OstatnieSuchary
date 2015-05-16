@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Media;
 
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
+using OstatnieSuchary.Converter;
 using OstatnieSuchary.Model;
 using OstatnieSuchary.ViewModel;
 
@@ -36,10 +37,12 @@ namespace OstatnieSuchary
 			this.InitializeComponent();
 			_viewModel = GameManager.Instance.Match;
 			DataContext = _viewModel;
-
+			brushConverter = new FieldStateToBrushConverter();
 			Loaded += MatchPage_Loaded;
 			Task.Run(() => Load());
 		}
+
+		private FieldStateToBrushConverter brushConverter;
 
 		private async void MatchPage_Loaded(object sender, RoutedEventArgs e)
 		{
@@ -56,25 +59,33 @@ namespace OstatnieSuchary
 					
 					button.VerticalAlignment = VerticalAlignment.Stretch;
 					button.HorizontalAlignment = HorizontalAlignment.Stretch;
-
-					/*if (field.PositionX == 3 && field.PositionY == 11)
-					{
-						//BitmapImage bitmapImage = new BitmapImage(new Uri("ms-appx:///Assets/hippo200.png"));
-
-						//Binding binding = new Binding();
-						//binding.Mode = BindingMode.TwoWay;
-						//binding.Path = new PropertyPath("AnimalAtField.Image");
-						//binding.Source = field;
-
-						//button.SetBinding(ContentProperty, binding );
-					}*/
 					
+					Binding binding = new Binding();
+					binding.Mode = BindingMode.TwoWay;
+					binding.Path = new PropertyPath("Image");
+					binding.Source = field;
+
+					Image myImage = new Image();
+					myImage.Width = 20;
+					myImage.Height = 20;
+					myImage.HorizontalAlignment = HorizontalAlignment.Center;
+					myImage.VerticalAlignment = VerticalAlignment.Center;
+					myImage.SetBinding(Image.SourceProperty, binding);
+
+					button.Content = myImage;
+
 					button.BorderThickness = new Thickness(1, 1, 1, 1);
 					button.BorderBrush = new SolidColorBrush(Colors.AliceBlue);
-				
 
+					Binding binding2 = new Binding();
+					binding2.Mode = BindingMode.TwoWay;
+					binding2.Source = field;
+					binding2.Path = new PropertyPath("Instance");
+					binding2.Converter = brushConverter;
 
-					button.Background = new SolidColorBrush(Colors.LawnGreen);
+					button.SetBinding(BackgroundProperty,binding2);
+					
+					button.Command = field.FieldCommand;
 
 					Board.Children.Add(button);
 					Grid.SetColumn(button, field.PositionX + 2);

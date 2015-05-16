@@ -15,9 +15,6 @@ namespace OstatnieSuchary.ViewModel
         public AnimalsCollectionViewModel()
         {
             AllAnimalsCollection = new ObservableCollection<Animal>();
-            //AllAnimalsCollection.Add(new Lemoor(:D));
-            //AllAnimalsCollection.Add(new Lemoor(:D));
-            //AllAnimalsCollection.Add(new Lemoor(:D));
         }
 
     }
