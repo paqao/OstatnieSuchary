@@ -13,6 +13,7 @@ namespace OstatnieSuchary.Model
         public Hippo(string name) : base(name, AnimalType.Hippo)
         {
 	        LoadImage(imgPath);
+	        Speed = 160;
         }
     }
 }

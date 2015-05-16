@@ -20,6 +20,7 @@ namespace OstatnieSuchary.ViewModel
 		private long[,] _fields;
 		private List<FieldItemViewModel> _fieldItemViewModels;
 		private bool _busy;
+		private ActionStatus _actionStatus;
 
 		public List<FieldItemViewModel> FieldItemViewModels
 		{
@@ -41,6 +42,19 @@ namespace OstatnieSuchary.ViewModel
 					this.FieldItemViewModels.Add(newFieldItemViewModel);
 				}
 			}
+
+			Animal ani = new Hippo("moj hippo");
+
+			_fieldItemViewModels[37].AnimalAtField = ani;
+			ani.PositionX = 7;
+			ani.PositionY = 1;
+			ani.IsActive = true;
+			this.ActiveAnimal = ani;
+
+
+			ani = new Hippo("moj hippo2");
+
+			_fieldItemViewModels[120].AnimalAtField = ani;
 		}
 
 		public TeamViewModel HomeTeamVM
@@ -135,5 +149,31 @@ namespace OstatnieSuchary.ViewModel
 				}
 			}
 		}
+
+		public ActionStatus ActionStatus
+		{
+			get { return _actionStatus; }
+			set
+			{
+				if (_actionStatus != value)
+				{
+					_actionStatus = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public void RefreshState()
+		{
+			foreach (var field in FieldItemViewModels)
+			{
+				field.InSprintRange = false;
+			}
+		}
+	}
+
+	public enum ActionStatus
+	{
+		None, Sprint
 	}
 }

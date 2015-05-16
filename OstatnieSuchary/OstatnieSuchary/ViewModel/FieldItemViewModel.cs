@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Imaging;
 using OstatnieSuchary.Model;
 
@@ -18,16 +20,39 @@ namespace OstatnieSuchary.ViewModel
 		private ICommand _fieldCommand;
 		private Animal _animalAtField;
 		private BitmapImage _image;
+		private bool _inSprintRange;
+		private bool _isEnabled;
 
 		public FieldItemViewModel(MatchViewModel matchViewModel, int positionX, int positionY)
 		{
 			_matchViewModel = matchViewModel;
 			this.positionX = positionX;
 			this.positionY = positionY;
-			this.AnimalAtField = new Hippo("moj hipp");
+			FieldCommand = new RelayCommand(fieldCommandAction);
 		}
 
+		private void fieldCommandAction(object obj)
+		{
+			if (!this.InSprintRange)
+				return;
 
+			var match = GameManager.Instance.Match;
+			switch (match.ActionStatus)
+			{
+				case ActionStatus.Sprint:
+				{
+					long previousX = GameManager.Instance.Match.ActiveAnimal.PositionX;
+					long previousY = GameManager.Instance.Match.ActiveAnimal.PositionY;
+                    GameManager.Instance.Match.FieldItemViewModels[(int)(previousX + 30* previousY)].AnimalAtField = null;
+					GameManager.Instance.Match.ActiveAnimal.PositionX = this.PositionX;
+					GameManager.Instance.Match.ActiveAnimal.PositionY = this.PositionY;
+					GameManager.Instance.Match.RefreshState();
+					this.AnimalAtField = GameManager.Instance.Match.ActiveAnimal;
+					match.ActionStatus =ActionStatus.None; 
+					break;
+				}
+			}
+		}
 
 		public Animal AnimalAtField
 		{
@@ -38,7 +63,43 @@ namespace OstatnieSuchary.ViewModel
 				{
 					_animalAtField = value;
 					OnPropertyChanged();
+					OnPropertyChanged("Instance");
+					OnPropertyChanged("Image");
 				}
+			}
+		}
+
+		public bool InSprintRange
+		{
+			get { return _inSprintRange; }
+			set
+			{
+				if (_inSprintRange != value)
+				{
+					_inSprintRange = value;
+					OnPropertyChanged();
+					OnPropertyChanged("Instance");
+				}
+			}
+		}
+
+		public FieldItemViewModel Instance
+		{
+			get
+			{
+				return this;
+			}
+		}
+
+		public BitmapImage Image
+		{
+			get
+			{
+				if (AnimalAtField == null)
+				{
+					return null;
+				}
+				return AnimalAtField.Image;
 			}
 		}
 
@@ -76,6 +137,19 @@ namespace OstatnieSuchary.ViewModel
 				if (positionY != value)
 				{
 					positionY = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		public bool IsEnabled
+		{
+			get { return _isEnabled; }
+			set
+			{
+				if (_isEnabled != value)
+				{
+					_isEnabled = value;
 					OnPropertyChanged();
 				}
 			}
