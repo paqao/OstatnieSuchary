@@ -14,7 +14,11 @@ namespace OstatnieSuchary.ViewModel
 		{
 			TemplateAnimals = new ObservableCollection<Animal>();
 			_templateAnimals.Add(new Hippo(""));
-		}
+            _templateAnimals.Add(new Monkey(""));
+            _templateAnimals.Add(new Lion(""));
+            _templateAnimals.Add(new Pinguins(""));
+            _templateAnimals.Add(new Lemur(""));
+        }
 
 		private ObservableCollection<Animal> _templateAnimals;
 

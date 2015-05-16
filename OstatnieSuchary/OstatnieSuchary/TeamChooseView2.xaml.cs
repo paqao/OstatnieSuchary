@@ -34,13 +34,15 @@ namespace OstatnieSuchary
 
 		private void choosenAnimalsGridView_OnDrop(object sender, DragEventArgs e)
 		{
-			// dodac animala do kolekcji
+            // dodac animala do kolekcji
+
 		}
 
 
 	    private void ListViewBase_OnDragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	    {
 
+            
 	    }
 
 		private void UIElement_OnDragStarting(object sender, DragStartingEventArgs args)

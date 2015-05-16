@@ -21,8 +21,7 @@
             
 			
         </GridView>
-
+		
 		<GridView AllowDrop="True" Drop="choosenAnimalsGridView_OnDrop" x:Name="choosenAnimalsGridView" HorizontalAlignment="Left" Height="66" Margin="70,228,0,0" VerticalAlignment="Top" Width="376" Background="Lavender"/>
-
-    </Grid>
+	</Grid>
 </Page>
