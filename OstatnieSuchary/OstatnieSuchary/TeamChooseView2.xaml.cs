@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using OstatnieSuchary.Model;
+using OstatnieSuchary.ViewModel;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -34,8 +35,9 @@ namespace OstatnieSuchary
 
 		private void choosenAnimalsGridView_OnDrop(object sender, DragEventArgs e)
 		{
-			// dodac animala do kolekcji
-		}
+            // dodac animala do kolekcji
+            GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Add(_draggedAnimal);
+        }
 
 
 	    private void ListViewBase_OnDragItemsStarting(object sender, DragItemsStartingEventArgs e)
@@ -48,5 +50,11 @@ namespace OstatnieSuchary
 			var animal = (sender as Image).DataContext as Animal;
 			this._draggedAnimal = animal;
 		}
-	}
+
+        private void UIElement_OnDragStartingDelete(object sender, DragStartingEventArgs args)
+        {
+            var animal = (sender as Image).DataContext as Animal;
+            GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Remove(animal);
+        }
+    }
 }
