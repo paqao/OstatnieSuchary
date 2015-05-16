@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace OstatnieSuchary.Model
 {
-	abstract class Animal : ViewModel
+	public abstract class Animal : ViewModel
 	{
 		private string _name;
 		private AnimalType _type;
+        public Guid Id { get; set; }
 
 		public Animal(string name, AnimalType type )
 		{
@@ -59,7 +60,7 @@ namespace OstatnieSuchary.Model
 		}
 	}
 
-	enum AnimalType
+	public enum AnimalType
 	{
 		Monkey,
 		Lion,
