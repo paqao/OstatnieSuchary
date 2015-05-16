@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OstatnieSuchary.Model;
 
+
 namespace OstatnieSuchary.ViewModel
 {
 	public class ChooseTeamViewModel : Model.ViewModel
@@ -18,7 +19,7 @@ namespace OstatnieSuchary.ViewModel
             _templateAnimals.Add(new Lion(""));
             _templateAnimals.Add(new Pinguins(""));
             _templateAnimals.Add(new Lemur(""));
-        }
+		}
 
 		private ObservableCollection<Animal> _templateAnimals;
 
@@ -34,5 +35,20 @@ namespace OstatnieSuchary.ViewModel
 				}
 			}
 		}
+
+        private ObservableCollection<Animal> _choosenAnimals = new ObservableCollection<Animal>();
+
+        public ObservableCollection<Animal> ChoosenAnimals
+        {
+            get { return _choosenAnimals; }
+            set
+            {
+                if (_choosenAnimals != value)
+                {
+                    _choosenAnimals = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 	}
 }
