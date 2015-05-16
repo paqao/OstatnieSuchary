@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,12,0,-12">
         <GridView x:Name="aaa" 
                   HorizontalAlignment="Left" 
-                  Margin="70,72,0,0" VerticalAlignment="Top" 
+                  Margin="415,93,0,0" VerticalAlignment="Top" 
                   Width="376" Height="113" Background="AliceBlue" ItemsSource="{Binding TemplateAnimals}">
 			<GridView.ItemTemplate >
 				<DataTemplate >
@@ -21,13 +21,24 @@
             
         <GridView AllowDrop="True" 
                   Drop="choosenAnimalsGridView_OnDrop" x:Name="choosenAnimalsGridView" 
-                  HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="376" Margin="70,228,0,0" 
-                  Background="Lavender" ItemsSource="{Binding ChoosenAnimals}" >
+                  HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="376" Margin="127,321,0,0" 
+                  Background="Yellow" ItemsSource="{Binding ChoosenAnimals}" SelectionChanged="choosenAnimalsGridView_SelectionChanged" >
             <GridView.ItemTemplate >
                 <DataTemplate >
                     <Image DragStarting="UIElement_OnDragStartingDelete" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
+        <GridView AllowDrop="True" 
+        	Drop="choosenAnimalsGridView_OnDrop2" x:Name="choosenAnimalsGridView_Copy2" 
+        	HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="376" Margin="727,321,0,0" 
+        	Background="MediumTurquoise" ItemsSource="{Binding ChoosenAnimals2}" SelectionChanged="choosenAnimalsGridView_Copy2_SelectionChanged" >
+            <GridView.ItemTemplate >
+                <DataTemplate >
+                    <Image DragStarting="UIElement_OnDragStartingDelete2" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
+                </DataTemplate>
+            </GridView.ItemTemplate>
+        </GridView>
+        <Button x:Name="continueButton" Content="GRAJ" HorizontalAlignment="Left" Margin="998,558,0,0" VerticalAlignment="Top" Height="56" Width="140" IsEnabled="False"/>
     </Grid>
 </Page>

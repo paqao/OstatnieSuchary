@@ -52,5 +52,20 @@ namespace OstatnieSuchary.ViewModel
                 }
             }
         }
-	}
+
+        private ObservableCollection<Animal> _choosenAnimals2 = new ObservableCollection<Animal>();
+
+        public ObservableCollection<Animal> ChoosenAnimals2
+        {
+            get { return _choosenAnimals2; }
+            set
+            {
+                if (_choosenAnimals2 != value)
+                {
+                    _choosenAnimals2 = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+    }
 }

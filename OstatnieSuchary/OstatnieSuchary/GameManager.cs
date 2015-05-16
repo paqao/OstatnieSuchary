@@ -19,6 +19,8 @@ namespace OstatnieSuchary
 		private ChooseTeamViewModel _teamSelector;
         private ChooseTeamViewModel _chooseTeamViewModel;
 
+        public int animalsInTeam = 5;
+
 		public static GameManager Instance
 		{
 			get
