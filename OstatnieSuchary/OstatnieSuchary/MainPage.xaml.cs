@@ -27,9 +27,14 @@ namespace OstatnieSuchary
             this.InitializeComponent();
         }
 
-        private void tournament_click(object sender, RoutedEventArgs e)
+        private void ChooseTeam_click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(TournamentPage));
+            this.Frame.Navigate(typeof(ChooseTeamPage));
         }
-    }
+
+		private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+		{
+			this.Frame.Navigate(typeof (MatchPage));
+		}
+	}
 }
