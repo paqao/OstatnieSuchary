@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,12,0,-12">
+        
         <GridView x:Name="aaa" 
                   HorizontalAlignment="Left" 
                   Margin="415,93,0,0" VerticalAlignment="Top" 
@@ -39,6 +40,6 @@
                 </DataTemplate>
             </GridView.ItemTemplate>
         </GridView>
-        <Button x:Name="continueButton" Content="GRAJ" HorizontalAlignment="Left" Margin="998,558,0,0" VerticalAlignment="Top" Height="56" Width="140" IsEnabled="False"/>
+        <Button x:Name="continueButton" Content="GRAJ" HorizontalAlignment="Left" Margin="998,558,0,0" VerticalAlignment="Top" Height="56" Width="140" IsEnabled="False" Click="continueButton_Click"/>
     </Grid>
 </Page>

@@ -131,6 +131,11 @@ namespace OstatnieSuchary
 
         }
 
+        private void continueButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MatchPage));
+        }
+
         private void choosenAnimalsGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
