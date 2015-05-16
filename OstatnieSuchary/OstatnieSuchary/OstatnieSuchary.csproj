@@ -95,6 +95,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converter\FieldStateToBorderBrushConverter.cs" />
     <Compile Include="Converter\FieldStateToBrushConverter.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="MainPage.xaml.cs">

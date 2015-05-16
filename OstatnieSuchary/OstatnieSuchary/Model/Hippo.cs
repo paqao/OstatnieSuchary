@@ -14,6 +14,8 @@ namespace OstatnieSuchary.Model
         {
 	        LoadImage(imgPath);
 	        Speed = 160;
+	        Power = 400;
+	        Accuracy = 70;
         }
     }
 }

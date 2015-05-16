@@ -68,7 +68,11 @@ namespace OstatnieSuchary.Model
 			SprintCommand = new RelayCommand(x =>
 			{
 				GameManager.Instance.Match.ActionStatus = ActionStatus.Sprint;
-                int range = (int) Math.Sqrt((double)this.Speed/20.0f);
+
+				var modifiedSpeed = this.Speed;
+				if (HasBall)
+					modifiedSpeed = modifiedSpeed*3/4;
+				int range = (int) Math.Sqrt((double)modifiedSpeed / 20.0f);
 
 				long actualPos = CalculateActualPosition(PositionX, PositionY);
 				
@@ -116,6 +120,13 @@ namespace OstatnieSuchary.Model
 					}
 				}
 			});
+
+			WaitButtonCommand = new RelayCommand(x =>
+			{
+				GameManager.Instance.Match.EndTurn();
+			});
+
+
 		}
 
 		private long CalculateActualPosition(long posX, long posY)
@@ -169,7 +180,7 @@ namespace OstatnieSuchary.Model
 
 		public decimal Power;
 		public decimal Defence;
-		public decimal Accurance;
+		public decimal Accuracy;
 		public decimal Dash;
 		private bool _hasBall;
 		private ICommand _kickCommand;
@@ -177,7 +188,7 @@ namespace OstatnieSuchary.Model
 		private ICommand _sprintCommand;
 		private ICommand _defenceButton;
 		private ICommand _dashButton;
-		private ICommand _waitButton;
+		private ICommand _waitButtonCommand;
 		private BitmapImage _image;
 		private bool _isActive;
 		private long _positionX;
@@ -280,14 +291,14 @@ namespace OstatnieSuchary.Model
 			}
 		}
 
-		public ICommand WaitButton
+		public ICommand WaitButtonCommand
 		{
-			get { return _waitButton; }
+			get { return _waitButtonCommand; }
 			set
 			{
-				if (_waitButton != value)
+				if (_waitButtonCommand != value)
 				{
-					_waitButton = value;
+					_waitButtonCommand = value;
 					OnPropertyChanged();
 				}
 			}

@@ -207,10 +207,10 @@
 			<Button x:Uid="KickButton" Command="{Binding ActiveAnimal.KickCommand, Mode=TwoWay}" Margin="3" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 			<Button x:Uid="PassButton" Command="{Binding ActiveAnimal.PassCommand, Mode=TwoWay}" Margin="3" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 			<Button x:Uid="SprintButton" Command="{Binding ActiveAnimal.SprintCommand, Mode=TwoWay}" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-			<Button x:Uid="DefenceButton" Command="{Binding ActiveAnimal.DefenceButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-			<Button x:Uid="DashButton" Command="{Binding ActiveAnimal.DashButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, ConverterParameter=Negation, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="DefenceButton" Command="{Binding ActiveAnimal.DefenceButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, ConverterParameter=Negation, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="DashButton" Command="{Binding ActiveAnimal.DashButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 
-			<Button x:Uid="WaitButton" Command="{Binding ActiveAnimal.WaitButton, Mode=TwoWay}" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button x:Uid="WaitButton" Command="{Binding ActiveAnimal.WaitButtonCommand, Mode=TwoWay}" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 		</Grid>
 
 		<Grid Background="Black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" x:Name="Busy" Opacity="0">

@@ -37,11 +37,13 @@ namespace OstatnieSuchary
 			_viewModel = GameManager.Instance.Match;
 			DataContext = _viewModel;
 			brushConverter = new FieldStateToBrushConverter();
+			borderBrushConverter = new FieldStateToBorderBrushConverter();
 			Loaded += MatchPage_Loaded;
 			Task.Run(() => Load());
 		}
 
 		private FieldStateToBrushConverter brushConverter;
+		private FieldStateToBorderBrushConverter borderBrushConverter;
 
 		private async void MatchPage_Loaded(object sender, RoutedEventArgs e)
 		{
@@ -83,7 +85,15 @@ namespace OstatnieSuchary
 					binding2.Converter = brushConverter;
 
 					button.SetBinding(BackgroundProperty,binding2);
-					
+
+					binding2 = new Binding();
+					binding2.Mode = BindingMode.TwoWay;
+					binding2.Source = field;
+					binding2.Path = new PropertyPath("Instance");
+					binding2.Converter = borderBrushConverter;
+
+					button.SetBinding(BorderBrushProperty, binding2);
+
 					button.Command = field.FieldCommand;
 
 					Board.Children.Add(button);

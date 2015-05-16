@@ -22,6 +22,7 @@ namespace OstatnieSuchary.ViewModel
 		private BitmapImage _image;
 		private bool _inSprintRange;
 		private bool _isEnabled;
+		private bool _containsBall;
 
 		public FieldItemViewModel(MatchViewModel matchViewModel, int positionX, int positionY)
 		{
@@ -156,9 +157,17 @@ namespace OstatnieSuchary.ViewModel
 			}
 		}
 
-		public override string ToString()
+		public bool ContainsBall
 		{
-			return positionX + " " + positionY;
+			get { return _containsBall; }
+			set
+			{
+				if (_containsBall != value)
+				{
+					_containsBall = value;
+					OnPropertyChanged();
+				}
+			}
 		}
 
 		public void Refresh()

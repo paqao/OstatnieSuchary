@@ -56,6 +56,7 @@ namespace OstatnieSuchary.ViewModel
 			ani.PositionX = 7;
 			ani.PositionY = 1;
 			ani.IsActive = true;
+			ani.HasBall = true;
 			team1.AddAnimal(ani);
 
 
@@ -215,6 +216,6 @@ namespace OstatnieSuchary.ViewModel
 
 	public enum ActionStatus
 	{
-		None, Sprint
+		None, Sprint, SprintBeforePass
 	}
 }
