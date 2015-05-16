@@ -32,21 +32,31 @@ namespace OstatnieSuchary
 	public sealed partial class MatchPage : Page
 	{
 		private MatchViewModel _viewModel;
+		private Random _random;
 		public MatchPage()
 		{
 			this.InitializeComponent();
 			_viewModel = GameManager.Instance.Match;
+			_viewModel.HomeTeamVM = new TeamViewModel();
+			_viewModel.HomeTeamVM.TeamName = "Zespol domowy";
+			_viewModel.HomeTeamVM.TeamList = GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.ToList();
+			_viewModel.AwayTeamVM = new TeamViewModel();
+			_viewModel.AwayTeamVM.TeamName = "Zespol drugi";
+			_viewModel.AwayTeamVM.TeamList = GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals2.ToList();
+
 			DataContext = _viewModel;
 			brushConverter = new FieldStateToBrushConverter();
 			borderBrushConverter = new FieldStateToBorderBrushConverter();
+			_random = new Random();
 			Loaded += MatchPage_Loaded;
 			Task.Run(() => Load());
+
 		}
 
 		private FieldStateToBrushConverter brushConverter;
 		private FieldStateToBorderBrushConverter borderBrushConverter;
 
-		private async void MatchPage_Loaded(object sender, RoutedEventArgs e)
+		private void MatchPage_Loaded(object sender, RoutedEventArgs e)
 		{
 			_viewModel.Busy = true;
 		}
@@ -102,7 +112,23 @@ namespace OstatnieSuchary
 					Grid.SetRow(button, field.PositionY + 1);
 
 				}
-				
+
+				foreach (var player in _viewModel.HomeTeamVM.TeamList)
+				{
+					player.PositionY = _random.Next(0, 20);
+					player.PositionX = _random.Next(0, 15);
+
+					_viewModel.FieldItemViewModels[(int)(player.PositionY*30 + player.PositionX)].AnimalAtField = player;
+				}
+
+				foreach (var player in _viewModel.AwayTeamVM.TeamList)
+				{
+					player.PositionY = _random.Next(0, 20);
+					player.PositionX = _random.Next(16, 30);
+
+					_viewModel.FieldItemViewModels[(int)(player.PositionY * 30 + player.PositionX)].AnimalAtField = player;
+				}
+				_viewModel.Initialize();
 			});
 			await Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
 			{

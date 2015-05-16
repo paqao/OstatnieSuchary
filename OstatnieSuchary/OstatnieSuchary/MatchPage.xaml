@@ -5,7 +5,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converter="using:OstatnieSuchary.Converter" 
-	xmlns:Interactivity="using:Microsoft.Xaml.Interactivity" xmlns:Core="using:Microsoft.Xaml.Interactions.Core" x:Name="page"
+	xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+	xmlns:core="using:Microsoft.Xaml.Interactions.Core" 
+	x:Name="page"
     x:Class="OstatnieSuchary.MatchPage" 
 	mc:Ignorable="d">
 
@@ -14,7 +16,7 @@
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<!--<VisualStateManager.VisualStateGroups>
+		<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup x:Name="VisualStateGroup">
 				<VisualStateGroup.Transitions>
 					<VisualTransition GeneratedDuration="0" To="Busy">
@@ -28,18 +30,44 @@
 								<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
 								<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0.5"/>
 							</DoubleAnimationUsingKeyFrames>
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Busy">
+								<DiscreteObjectKeyFrame KeyTime="0">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Visible</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+								<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Collapsed</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
 						</Storyboard>
 					</VisualTransition>
 					<VisualTransition From="BusyState" GeneratedDuration="0">
 						<Storyboard>
 							<DoubleAnimation Duration="0:0:0.5" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Busy"/>
-							
+							<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Busy">
+								<DiscreteObjectKeyFrame KeyTime="0">
+									<DiscreteObjectKeyFrame.Value>
+										<Visibility>Visible</Visibility>
+									</DiscreteObjectKeyFrame.Value>
+								</DiscreteObjectKeyFrame>
+							</ObjectAnimationUsingKeyFrames>
+
 						</Storyboard>
 					</VisualTransition>
 				</VisualStateGroup.Transitions>
 				<VisualState x:Name="BusyState">
 					<Storyboard>
 						<DoubleAnimation Duration="0" To="0.75" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="Busy" d:IsOptimized="True"/>
+						<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="Busy">
+							<DiscreteObjectKeyFrame KeyTime="0">
+								<DiscreteObjectKeyFrame.Value>
+									<Visibility>Visible</Visibility>
+								</DiscreteObjectKeyFrame.Value>
+							</DiscreteObjectKeyFrame>
+						</ObjectAnimationUsingKeyFrames>
 					</Storyboard>
 				</VisualState>
 				<VisualState x:Name="NormalState">
@@ -54,7 +82,7 @@
 					</Storyboard>
 				</VisualState>
 			</VisualStateGroup>
-		</VisualStateManager.VisualStateGroups>-->
+		</VisualStateManager.VisualStateGroups>
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="3*"/>
@@ -62,16 +90,16 @@
 		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="70"/>
-			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
-		<!--<Interactivity:Interaction.Behaviors>
-			<Core:DataTriggerBehavior Binding="{Binding Busy}" Value="True">
-				<Core:GoToStateAction StateName="BusyState"/>
-			</Core:DataTriggerBehavior>
-			<Core:DataTriggerBehavior Binding="{Binding Busy}" Value="False">
-				<Core:GoToStateAction StateName="NormalState"/>
-			</Core:DataTriggerBehavior>
-		</Interactivity:Interaction.Behaviors>-->
+		<interactivity:Interaction.Behaviors>
+			<core:DataTriggerBehavior Binding="{Binding Busy}" Value="True">
+				<core:GoToStateAction StateName="BusyState"/>
+			</core:DataTriggerBehavior>
+			<core:DataTriggerBehavior Binding="{Binding Busy}" Value="False">
+				<core:GoToStateAction StateName="NormalState"/>
+			</core:DataTriggerBehavior>
+		</interactivity:Interaction.Behaviors>
 		<Grid Grid.ColumnSpan="3" Grid.Row="0">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="2*"/>
@@ -211,8 +239,8 @@
 			<Button x:Uid="KickButton" Command="{Binding ActiveAnimal.KickCommand, Mode=TwoWay}" Margin="3" Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
 			<Button x:Uid="PassButton" Command="{Binding ActiveAnimal.PassCommand, Mode=TwoWay}" Margin="3" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 			<Button x:Uid="SprintButton" Command="{Binding ActiveAnimal.SprintCommand, Mode=TwoWay}" Margin="3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-			<Button x:Uid="DefenceButton" Command="{Binding ActiveAnimal.DefenceButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, ConverterParameter=Negation, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-			<Button x:Uid="DashButton" Command="{Binding ActiveAnimal.DashButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button IsEnabled="False" x:Uid="DefenceButton" Command="{Binding ActiveAnimal.DefenceButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, ConverterParameter=Negation, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			<Button IsEnabled="False" x:Uid="DashButton" Command="{Binding ActiveAnimal.DashButton, Mode=TwoWay}" Visibility="{Binding ActiveAnimal.HasBall, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}" Margin="3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 
 			<Button x:Uid="WaitButton" Command="{Binding ActiveAnimal.WaitButtonCommand, Mode=TwoWay}" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 		</Grid>
@@ -228,7 +256,7 @@
 				<ColumnDefinition Width="*"/>
 				<ColumnDefinition Width="*"/>
 			</Grid.ColumnDefinitions>
-			<ProgressRing Grid.Row="1" Width="400" Height="400" IsActive="True" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+			<ProgressRing Grid.Row="1" Width="300" Height="300" IsActive="True" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
 			<TextBlock Grid.Row="2" Grid.Column="1" x:Uid="PreparingGame" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
 		</Grid>

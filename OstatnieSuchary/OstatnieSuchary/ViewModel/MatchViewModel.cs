@@ -54,36 +54,8 @@ namespace OstatnieSuchary.ViewModel
 
 		public void Initialize()
 		{
-			TeamViewModel team1 = new TeamViewModel();
-			Animal ani = new Hippo("moj hippo");
-
-			ani.PositionX = 7;
-			ani.PositionY = 1;
-			ani.IsActive = true;
-			ani.HasBall = true;
-			team1.AddAnimal(ani);
-
-
-			ani = new Hippo("moj hippo2");
-			ani.PositionX = 13;
-			ani.PositionY = 7;
-			team1.AddAnimal(ani);
-
-
-			HomeTeamVM = team1;
-
-			#region team 2
-			TeamViewModel team2 = new TeamViewModel();
-			Animal ani2 = new Hippo("moj hippo");
-
-			ani2.PositionX = 25;
-			ani2.PositionY = 11;
-			team2.AddAnimal(ani2);
-			AwayTeamVM = team2;
-
-			#endregion
 			_activeTeam = HomeTeamVM;
-			team1.StartsTurn();
+			_activeTeam.StartsTurn();
 			EndTurn();
 
 			_ballViewModel = new BallViewModel();
