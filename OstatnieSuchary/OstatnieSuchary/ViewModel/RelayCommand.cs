@@ -34,11 +34,11 @@ namespace OstatnieSuchary.ViewModel
 
 			if (actualExecution != _previousExecutionState)
 			{
+				_previousExecutionState = actualExecution;
 				if (CanExecuteChanged != null)
 				{
 					CanExecuteChanged(this,EventArgs.Empty);
 				}
-				_previousExecutionState = actualExecution;
 			}
 
 			return _previousExecutionState;

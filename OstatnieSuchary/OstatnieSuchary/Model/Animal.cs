@@ -52,74 +52,47 @@ namespace OstatnieSuchary.Model
 		{
 			Name = name;
 			Type = type;
+			IsAtSemiAction = false;
 
 			KickCommand = new RelayCommand(async x =>
 			{
 				MessageDialog dialog = new MessageDialog("Kick");
 				await dialog.ShowAsync();
-			});
+			}, x=> HasBall && !IsAtSemiAction);
 
-			PassCommand = new RelayCommand(async x =>
+			PassCommand = new RelayCommand(x =>
 			{
-				MessageDialog dialog = new MessageDialog("Pass");
-				await dialog.ShowAsync();
-			});
+				GameManager.Instance.Match.ActionStatus = ActionStatus.SprintBeforePass;
+
+				var modifiedSpeed = this.Speed;
+				int range = (int)Math.Sqrt((double)modifiedSpeed / 40.0f);
+
+				long actualPos = CalculateActualPosition(PositionX, PositionY);
+
+				long tmpPosX = PositionX;
+				long tmpPosY = PositionY;
+				MarkInRange(tmpPosY, range, tmpPosX, actualPos);
+
+				var currentField = GameManager.Instance.Match.FieldItemViewModels[(int)actualPos];
+				currentField.InSprintRange = true;
+				IsAtSemiAction = false;
+			}, x => HasBall && !IsAtSemiAction);
 
 			SprintCommand = new RelayCommand(x =>
 			{
 				GameManager.Instance.Match.ActionStatus = ActionStatus.Sprint;
-
+				IsAtSemiAction = false;
 				var modifiedSpeed = this.Speed;
 				if (HasBall)
 					modifiedSpeed = modifiedSpeed*3/4;
 				int range = (int) Math.Sqrt((double)modifiedSpeed / 20.0f);
 
 				long actualPos = CalculateActualPosition(PositionX, PositionY);
-				
-				long minY = PositionY - range;
-	
-				for (int i = 0; i <= 2*range; i++)
-				{
-					if (i + minY < 0)
-					{
-						continue;
-					}
 
-					if (i + minY >= 20)
-					{
-						continue;
-					}
-
-					// center = i == range;
-					long delta;
-					if (i <= range)
-					{
-						delta = i;
-					}
-					else
-					{
-						delta = 2*range - i;
-					}
-					long minX = PositionX - delta;
-					long maxX = PositionX + delta;
-
-					
-					for (long j = minX; j <= maxX; j++)
-					{
-						if(j < 0 || j > 29)
-							continue;
-
-						long position = CalculateActualPosition(j, minY + i);
-						
-						if(position == actualPos)
-							continue;
-
-						var currentField = GameManager.Instance.Match.FieldItemViewModels[(int) position];
-						currentField.InSprintRange = true;
-						currentField.IsEnabled = true;
-					}
-				}
-			});
+				long tmpPosX = PositionX;
+				long tmpPosY = PositionY;
+				MarkInRange(tmpPosY, range, tmpPosX, actualPos);
+			}, x => !IsAtSemiAction);
 
 			WaitButtonCommand = new RelayCommand(x =>
 			{
@@ -127,6 +100,114 @@ namespace OstatnieSuchary.Model
 			});
 
 
+		}
+
+		public bool IsAtSemiAction
+		{
+			get { return _isAtSemiAction; }
+			set
+			{
+				if (_isAtSemiAction != value)
+				{
+					_isAtSemiAction = value;
+					OnPropertyChanged();
+					this.PassCommand.CanExecute(null);
+					this.KickCommand.CanExecute(null);
+					this.SprintCommand.CanExecute(null);
+				}
+			}
+		}
+
+		private void MarkInRange(long tmpPosY, int range, long tmpPosX, long actualPos)
+		{
+			long minY = tmpPosY - range;
+
+			for (int i = 0; i <= 2*range; i++)
+			{
+				if (i + minY < 0)
+				{
+					continue;
+				}
+
+				if (i + minY >= 20)
+				{
+					continue;
+				}
+
+				// center = i == range;
+				long delta;
+				if (i <= range)
+				{
+					delta = i;
+				}
+				else
+				{
+					delta = 2*range - i;
+				}
+				long minX = tmpPosX - delta;
+				long maxX = tmpPosX + delta;
+
+
+				for (long j = minX; j <= maxX; j++)
+				{
+					if (j < 0 || j > 29)
+						continue;
+
+					long position = CalculateActualPosition(j, minY + i);
+
+					if (position == actualPos)
+						continue;
+
+					var currentField = GameManager.Instance.Match.FieldItemViewModels[(int) position];
+					currentField.InSprintRange = true;
+					currentField.IsEnabled = true;
+				}
+			}
+		}
+		public void MarkInPassRange(long tmpPosY, int range, long tmpPosX, long actualPos)
+		{
+			long minY = tmpPosY - range;
+
+			for (int i = 0; i <= 2 * range; i++)
+			{
+				if (i + minY < 0)
+				{
+					continue;
+				}
+
+				if (i + minY >= 20)
+				{
+					continue;
+				}
+
+				// center = i == range;
+				long delta;
+				if (i <= range)
+				{
+					delta = i;
+				}
+				else
+				{
+					delta = 2 * range - i;
+				}
+				long minX = tmpPosX - delta;
+				long maxX = tmpPosX + delta;
+
+
+				for (long j = minX; j <= maxX; j++)
+				{
+					if (j < 0 || j > 29)
+						continue;
+
+					long position = CalculateActualPosition(j, minY + i);
+
+					if (position == actualPos)
+						continue;
+
+					var currentField = GameManager.Instance.Match.FieldItemViewModels[(int)position];
+					currentField.InPassRange = true;
+				}
+			}
 		}
 
 		private long CalculateActualPosition(long posX, long posY)
@@ -161,6 +242,8 @@ namespace OstatnieSuchary.Model
 				{
 					_hasBall = value;
 					OnPropertyChanged();
+					this.PassCommand.CanExecute(null);
+					this.KickCommand.CanExecute(null);
 				}
 			}
 		}
@@ -193,6 +276,7 @@ namespace OstatnieSuchary.Model
 		private bool _isActive;
 		private long _positionX;
 		private long _positionY;
+		private bool _isAtSemiAction;
 
 		public AnimalType Type
 		{

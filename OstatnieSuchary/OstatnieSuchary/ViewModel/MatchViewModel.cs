@@ -21,6 +21,7 @@ namespace OstatnieSuchary.ViewModel
 		private List<FieldItemViewModel> _fieldItemViewModels;
 		private bool _busy;
 		private ActionStatus _actionStatus;
+		private BallViewModel _ballViewModel;
 
 		public List<FieldItemViewModel> FieldItemViewModels
 		{
@@ -210,12 +211,14 @@ namespace OstatnieSuchary.ViewModel
 			foreach (var field in FieldItemViewModels)
 			{
 				field.InSprintRange = false;
+				field.InPassRange = false;
 			}
 		}
 	}
 
 	public enum ActionStatus
 	{
-		None, Sprint, SprintBeforePass
+		None, Sprint, SprintBeforePass,
+		Pass
 	}
 }

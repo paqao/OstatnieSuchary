@@ -105,6 +105,7 @@
       <DependentUpon>MatchPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\Animal.cs" />
+    <Compile Include="Model\BallViewModel.cs" />
     <Compile Include="Model\Lion.cs" />
     <Compile Include="Model\Lemur.cs" />
     <Compile Include="Model\Pinguins.cs" />

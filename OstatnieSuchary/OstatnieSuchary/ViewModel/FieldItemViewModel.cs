@@ -23,6 +23,7 @@ namespace OstatnieSuchary.ViewModel
 		private bool _inSprintRange;
 		private bool _isEnabled;
 		private bool _containsBall;
+		private bool _inPassRange;
 
 		public FieldItemViewModel(MatchViewModel matchViewModel, int positionX, int positionY)
 		{
@@ -34,12 +35,13 @@ namespace OstatnieSuchary.ViewModel
 
 		private void fieldCommandAction(object obj)
 		{
-			if (!this.InSprintRange)
+			if (!this.InSprintRange && !this.InPassRange)
 				return;
 
 			var match = GameManager.Instance.Match;
 			switch (match.ActionStatus)
 			{
+				case ActionStatus.SprintBeforePass:
 				case ActionStatus.Sprint:
 				{
 					long previousX = GameManager.Instance.Match.ActiveAnimal.PositionX;
@@ -47,9 +49,29 @@ namespace OstatnieSuchary.ViewModel
                     GameManager.Instance.Match.FieldItemViewModels[(int)(previousX + 30* previousY)].AnimalAtField = null;
 					GameManager.Instance.Match.ActiveAnimal.PositionX = this.PositionX;
 					GameManager.Instance.Match.ActiveAnimal.PositionY = this.PositionY;
-					GameManager.Instance.Match.RefreshState();
 					this.AnimalAtField = GameManager.Instance.Match.ActiveAnimal;
-					match.ActionStatus =ActionStatus.None;
+					GameManager.Instance.Match.RefreshState();
+					if (match.ActionStatus == ActionStatus.Sprint)
+					{
+						match.ActionStatus = ActionStatus.None;
+						GameManager.Instance.Match.EndTurn();
+						
+					}
+					else if (match.ActionStatus == ActionStatus.SprintBeforePass)
+					{
+						match.ActionStatus = ActionStatus.Pass;
+						var animal = GameManager.Instance.Match.ActiveAnimal;
+						int range = (int)Math.Sqrt((double)animal.Power / 20.0f);
+						animal.IsAtSemiAction = true;
+						animal.MarkInPassRange(animal.PositionY, range, animal.PositionX, animal.PositionX + animal.PositionY * 30);
+					}
+						
+					break;
+				}
+				case ActionStatus.Pass:
+				{
+					match.ActionStatus = ActionStatus.None;
+					GameManager.Instance.Match.RefreshState();
 					GameManager.Instance.Match.EndTurn();
 					break;
 				}
@@ -166,6 +188,20 @@ namespace OstatnieSuchary.ViewModel
 				{
 					_containsBall = value;
 					OnPropertyChanged();
+				}
+			}
+		}
+
+		public bool InPassRange
+		{
+			get { return _inPassRange; }
+			set
+			{
+				if (_inPassRange != value)
+				{
+					_inPassRange = value;
+					OnPropertyChanged();
+					OnPropertyChanged("Instance");
 				}
 			}
 		}

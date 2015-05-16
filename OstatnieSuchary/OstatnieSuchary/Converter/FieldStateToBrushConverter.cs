@@ -29,6 +29,10 @@ namespace OstatnieSuchary.Converter
 			{
 				color = Colors.Yellow;
 			}
+			if (field.InPassRange)
+			{
+				color = Colors.AliceBlue;
+			}
 			return new SolidColorBrush(color);
 			//if(field.AnimalAtField == null)
 			//	return new Solid
