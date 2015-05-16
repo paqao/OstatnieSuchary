@@ -17,6 +17,11 @@ namespace OstatnieSuchary.Model
 		private AnimalType _type;
         public Guid Id { get; set; }
 
+		protected void LoadImage(string path)
+		{
+			Image = new BitmapImage(new Uri(path));
+		}
+
 		public Animal(string name, AnimalType type )
 		{
 			Name = name;
