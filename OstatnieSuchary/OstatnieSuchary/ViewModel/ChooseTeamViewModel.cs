@@ -13,6 +13,8 @@ namespace OstatnieSuchary.ViewModel
 	{
 		public ChooseTeamViewModel()
 		{
+            GameManager.Instance.ChooseTeamViewModel = this;
+
 			TemplateAnimals = new ObservableCollection<Animal>();
 			_templateAnimals.Add(new Hippo(""));
             _templateAnimals.Add(new Monkey(""));
