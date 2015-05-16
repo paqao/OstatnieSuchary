@@ -7,7 +7,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+	<Grid x:Name="ChooseTeamGrid" Background="DarkGray">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.4*"></RowDefinition>
+			<RowDefinition Height="0.4*"></RowDefinition>
+			<RowDefinition Height="0.2*"></RowDefinition>
+		</Grid.RowDefinitions>
+		<GridView x:Name="gridView" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Background="white">
+			<Image Width="100" Height="105" Source="Assets/lemur200.png"></Image>
+			<Image Width="100" Height="105" Source="Assets/lion200.png"></Image>
+			<Image Width="100" Height="105" Source="Assets/monkey200.png"></Image>
+			<Image Width="100" Height="105" Source="Assets/penguin200.png"></Image>
+			<Image Width="100" Height="105" Source="Assets/hippo200.png"/>
+		</GridView>
 
-    </Grid>
+		<GridView x:Name="gridView1" Grid.Row="1" HorizontalAlignment="Center" Height="236" Width="312"  VerticalAlignment="Center"  Background="White" Margin="24,10" AllowDrop="True"/>
+		<Button Name="SubmitTeam"  Grid.Row="2" Content="START GAME !"  HorizontalAlignment="Center" Click="SubmitTeam_Click"   ></Button>
+	</Grid>
 </Page>

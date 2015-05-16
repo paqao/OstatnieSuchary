@@ -94,6 +94,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChooseTeamPage.xaml.cs">
+      <DependentUpon>ChooseTeamPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="MainPage.xaml.cs">
