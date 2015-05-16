@@ -15,9 +15,10 @@
             
 			<GridView.ItemTemplate >
 				<DataTemplate >
-					<Image DragStarting="UIElement_OnDragStarting" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
-				</DataTemplate>
+                    <Image DragStarting="UIElement_OnDragStarting" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
+                </DataTemplate>
 			</GridView.ItemTemplate>
+            
 			
         </GridView>
 

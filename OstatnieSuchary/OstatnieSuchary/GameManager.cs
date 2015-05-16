@@ -34,9 +34,11 @@ namespace OstatnieSuchary
 			set { _match = value; }
 		}
 
-		public ChooseTeamViewModel TeamSelector
-		{
-			get { return _teamSelector; }
-			set { _teamSelector = value; } }
-	}
+ 
+        public ChooseTeamViewModel TeamSelector
+        {
+            get { return _teamSelector; }
+            set { _teamSelector = value; }
+        }
+    }
 }

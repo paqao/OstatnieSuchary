@@ -14,7 +14,7 @@
 	</Page.Resources>
 
 	<Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-		<VisualStateManager.VisualStateGroups>
+		<!--<VisualStateManager.VisualStateGroups>
 			<VisualStateGroup x:Name="VisualStateGroup">
 				<VisualStateGroup.Transitions>
 					<VisualTransition GeneratedDuration="0" To="Busy">
@@ -54,7 +54,7 @@
 					</Storyboard>
 				</VisualState>
 			</VisualStateGroup>
-		</VisualStateManager.VisualStateGroups>
+		</VisualStateManager.VisualStateGroups>-->
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="3*"/>
@@ -213,7 +213,7 @@
 			<Button x:Uid="WaitButton" Command="{Binding ActiveAnimal.WaitButton, Mode=TwoWay}" Margin="3" Grid.Row="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 		</Grid>
 
-		<Grid Background="Black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" x:Name="Busy" Opacity="0">
+		<Grid Background="Black" Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" x:Name="Busy" Opacity="0" Visibility="Collapsed">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="*"/>
