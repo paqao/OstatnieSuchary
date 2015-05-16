@@ -12,13 +12,13 @@
                   HorizontalAlignment="Left" 
                   Margin="70,72,0,0" VerticalAlignment="Top" 
                   Width="376" Height="113" Background="AliceBlue" ItemsSource="{Binding TemplateAnimals}">
-            <GridView.ItemTemplate >
-                <DataTemplate >
+			<GridView.ItemTemplate >
+				<DataTemplate >
                     <Image DragStarting="UIElement_OnDragStarting" DataContext="{Binding}" Width="50" Height="50" CanDrag="True" Source="{Binding Image, Mode=OneWay}"/>
                 </DataTemplate>
-            </GridView.ItemTemplate>
+			</GridView.ItemTemplate>
         </GridView>
-
+            
         <GridView AllowDrop="True" 
                   Drop="choosenAnimalsGridView_OnDrop" x:Name="choosenAnimalsGridView" 
                   HorizontalAlignment="Left" VerticalAlignment="Top" Height="66" Width="376" Margin="70,228,0,0" 

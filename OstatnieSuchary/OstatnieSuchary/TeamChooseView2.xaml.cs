@@ -35,14 +35,15 @@ namespace OstatnieSuchary
 
 		private void choosenAnimalsGridView_OnDrop(object sender, DragEventArgs e)
 		{
-            // dodac animala do kolekcji
+			// dodac animala do kolekcji
             GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Add(_draggedAnimal);
-        }
+		}
 
 
 	    private void ListViewBase_OnDragItemsStarting(object sender, DragItemsStartingEventArgs e)
 	    {
 
+            
 	    }
 
 		private void UIElement_OnDragStarting(object sender, DragStartingEventArgs args)
@@ -56,5 +57,5 @@ namespace OstatnieSuchary
             var animal = (sender as Image).DataContext as Animal;
             GameManager.Instance.ChooseTeamViewModel.ChoosenAnimals.Remove(animal);
         }
-    }
+	}
 }
