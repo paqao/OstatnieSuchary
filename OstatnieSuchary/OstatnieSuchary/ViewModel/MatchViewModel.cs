@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.UI.Popups;
 using OstatnieSuchary.Annotations;
 using OstatnieSuchary.Model;
 
@@ -88,6 +90,43 @@ namespace OstatnieSuchary.ViewModel
 			_ballViewModel.PositionX = (int)_activeAnimal.PositionX;
 			_ballViewModel.PositionY = (int) _activeAnimal.PositionY;
 			_fieldItemViewModels[30*_ballViewModel.PositionY + _ballViewModel.PositionX].BallAtField = BallViewModel;
+
+			OnAwayScoreCommand =new RelayCommand(async x =>
+			{
+				
+				MessageDialog dialog = new MessageDialog("bkeee");
+				await dialog.ShowAsync();
+			}, x => ShotAtAway());
+
+			OnHomeScoreCommand = new RelayCommand(async x =>
+			{
+
+				MessageDialog dialog = new MessageDialog("bkeee");
+				await dialog.ShowAsync();
+			}, x => ShotAtHome());
+		}
+
+		private bool ShotAtHome()
+		{
+			return ActionStatus == ActionStatus.Pass || ActionStatus == ActionStatus.Shoot;
+		}
+
+		public RelayCommand OnHomeScoreCommand
+		{
+			get { return _onHomeScoreCommand; }
+			set
+			{
+				if (_onHomeScoreCommand != value)
+				{
+					_onHomeScoreCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+
+		private bool ShotAtAway()
+		{
+			return ActionStatus == ActionStatus.Pass || ActionStatus == ActionStatus.Shoot;
 		}
 
 		public BallViewModel BallViewModel
@@ -107,6 +146,9 @@ namespace OstatnieSuchary.ViewModel
 		}
 
 		private TeamViewModel _activeTeam;
+		private ICommand _onAwayScoreCommand;
+		private RelayCommand _onHomeScoreCommand;
+
 		public void EndTurn()
 		{
 			bool tryNext = _activeTeam.MoveNext();
@@ -223,6 +265,10 @@ namespace OstatnieSuchary.ViewModel
 				if (_actionStatus != value)
 				{
 					_actionStatus = value;
+					
+					OnAwayScoreCommand.CanExecute(null);
+					OnHomeScoreCommand.CanExecute(null);
+
 					OnPropertyChanged();
 				}
 			}
@@ -236,11 +282,26 @@ namespace OstatnieSuchary.ViewModel
 				field.InPassRange = false;
 			}
 		}
-	}
+
+		public ICommand OnAwayScoreCommand
+		{
+			get { return _onAwayScoreCommand; }
+			set
+			{
+				if (_onAwayScoreCommand != value)
+				{
+					_onAwayScoreCommand = value;
+					OnPropertyChanged();
+				}
+			}
+		}
+    }
 
 	public enum ActionStatus
 	{
 		None, Sprint, SprintBeforePass,
-		Pass
+		Pass,
+		SprintBeforeShoot,
+		Shoot
 	}
 }

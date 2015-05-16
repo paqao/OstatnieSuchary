@@ -183,12 +183,16 @@
 			<Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="34" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green"/>
 			<Grid Grid.Row="21" VerticalAlignment="Stretch" Grid.Column="0" Grid.ColumnSpan="34" HorizontalAlignment="Stretch" Background="Green"/>
 
-			<Grid Grid.Row="9" BorderBrush="AntiqueWhite" BorderThickness="3" Grid.RowSpan="4" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Red" />
+			<Grid Grid.Row="9" BorderBrush="AntiqueWhite" BorderThickness="3" Grid.RowSpan="4" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+				<Button Command="{Binding OnAwayScoreCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			</Grid>
 
 			<Grid Grid.Row="1" Grid.RowSpan="8" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />
 			<Grid Grid.Row="13" Grid.RowSpan="8" Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />
 
-			<Grid Grid.Row="9" BorderBrush="AntiqueWhite" BorderThickness="3" Grid.RowSpan="4" Grid.Column="32" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Red" />
+			<Grid Grid.Row="9" BorderBrush="AntiqueWhite" BorderThickness="3" Grid.RowSpan="4" Grid.Column="32" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+				<Button Command="{Binding OnHomeScoreCommand}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+			</Grid>
 
 			<Grid Grid.Row="1" Grid.RowSpan="8" Grid.Column="32" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />
 			<Grid Grid.Row="13" Grid.RowSpan="8" Grid.Column="32" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="Green" />

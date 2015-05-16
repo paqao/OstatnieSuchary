@@ -24,6 +24,7 @@ namespace OstatnieSuchary.ViewModel
 		private bool _inSprintRange;
 		private bool _isEnabled;
 		private bool _containsBall;
+		private Random radom;
 		private bool _inPassRange;
 
 		public FieldItemViewModel(MatchViewModel matchViewModel, int positionX, int positionY)
@@ -32,6 +33,7 @@ namespace OstatnieSuchary.ViewModel
 			this.positionX = positionX;
 			this.positionY = positionY;
 			FieldCommand = new RelayCommand(fieldCommandAction);
+			radom = new Random();
 		}
 
 		private void fieldCommandAction(object obj)
@@ -43,7 +45,8 @@ namespace OstatnieSuchary.ViewModel
 			switch (match.ActionStatus)
 			{
 				case ActionStatus.SprintBeforePass:
-				case ActionStatus.Sprint:
+				case ActionStatus.SprintBeforeShoot:
+                case ActionStatus.Sprint:
 				{
 					var activeAnimal = GameManager.Instance.Match.ActiveAnimal;
 					long previousX = activeAnimal.PositionX;
@@ -82,25 +85,45 @@ namespace OstatnieSuchary.ViewModel
 						animal.IsAtSemiAction = true;
 						animal.MarkInPassRange(animal.PositionY, range, animal.PositionX, animal.PositionX + animal.PositionY * 30);
 					}
-						
-					break;
+					else if (match.ActionStatus == ActionStatus.SprintBeforeShoot)
+					{
+						match.ActionStatus = ActionStatus.Shoot;
+						var animal = GameManager.Instance.Match.ActiveAnimal;
+						int range = (int)Math.Sqrt((double)animal.Power / 15.0f);
+						animal.IsAtSemiAction = true;
+						animal.MarkInPassRange(animal.PositionY, range, animal.PositionX, animal.PositionX + animal.PositionY * 30);
+					}
+
+						break;
 				}
-				case ActionStatus.Pass:
+				case ActionStatus.Shoot:
+                case ActionStatus.Pass:
 				{
 					match.ActionStatus = ActionStatus.None;
 
 					long previousX = GameManager.Instance.Match.BallViewModel.PositionX;
 					long previousY = GameManager.Instance.Match.BallViewModel.PositionY;
-
+					
 					GameManager.Instance.Match.ActiveAnimal.Ball = null;
 					GameManager.Instance.Match.ActiveAnimal.IsAtSemiAction = false;
-					GameManager.Instance.Match.BallViewModel.PositionX = PositionX;
-					GameManager.Instance.Match.BallViewModel.PositionY = PositionY;
+
+					var activeAnimal = GameManager.Instance.Match.ActiveAnimal;
+					var accuracy = match.ActionStatus == ActionStatus.Shoot ? 0.7M * activeAnimal.Accuracy : activeAnimal.Accuracy;
+
+					double diff = Math.Sqrt((110 - (double) accuracy)/1.25f);
+					
+                    var diffX =(int) ( (-0.5 + radom.NextDouble()) * diff);
+					var diffY = (int)((-0.5 + radom.NextDouble()) * diff);
+
+					var newPositionX = PositionX + diffX;
+					var newPositionY = PositionY + diffY;
+					GameManager.Instance.Match.BallViewModel.PositionX = newPositionX;
+					GameManager.Instance.Match.BallViewModel.PositionY = newPositionY;
 					
 					var previousField = GameManager.Instance.Match.FieldItemViewModels[(int)(previousX + 30 * previousY)];
 					previousField.BallAtField = null;
 
-					var destinationField = GameManager.Instance.Match.FieldItemViewModels[(int) (PositionX + 30*PositionY)];
+					var destinationField = GameManager.Instance.Match.FieldItemViewModels[(int) (newPositionX + 30* newPositionY)];
 
 					destinationField.BallAtField = GameManager.Instance.Match.BallViewModel;
 					GameManager.Instance.Match.RefreshState();

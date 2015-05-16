@@ -121,6 +121,7 @@
     <Compile Include="ViewModel\AnimalsCollectionViewModel.cs" />
     <Compile Include="ViewModel\ChooseTeamViewModel.cs" />
     <Compile Include="ViewModel\FieldItemViewModel.cs" />
+    <Compile Include="ViewModel\Goal.cs" />
     <Compile Include="ViewModel\MatchViewModel.cs" />
     <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="ViewModel\TeamViewModel.cs" />

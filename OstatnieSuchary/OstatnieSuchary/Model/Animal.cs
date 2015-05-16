@@ -68,11 +68,23 @@ namespace OstatnieSuchary.Model
 			Type = type;
 			IsAtSemiAction = false;
 
-			KickCommand = new RelayCommand(async x =>
+			KickCommand = new RelayCommand(x =>
 			{
-				MessageDialog dialog = new MessageDialog("Kick");
-				await dialog.ShowAsync();
-			}, x=> HasBall && !IsAtSemiAction);
+				GameManager.Instance.Match.ActionStatus = ActionStatus.SprintBeforeShoot;
+
+				var modifiedSpeed = this.Speed;
+				int range = (int)Math.Sqrt((double)modifiedSpeed / 40.0f);
+
+				long actualPos = CalculateActualPosition(PositionX, PositionY);
+
+				long tmpPosX = PositionX;
+				long tmpPosY = PositionY;
+				MarkInRange(tmpPosY, range, tmpPosX, actualPos);
+
+				var currentField = GameManager.Instance.Match.FieldItemViewModels[(int)actualPos];
+				currentField.InSprintRange = true;
+				IsAtSemiAction = false;
+			}, x => HasBall && !IsAtSemiAction);
 
 			PassCommand = new RelayCommand(x =>
 			{
