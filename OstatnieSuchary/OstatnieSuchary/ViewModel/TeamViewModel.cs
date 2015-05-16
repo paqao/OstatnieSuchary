@@ -33,10 +33,9 @@ namespace OstatnieSuchary.ViewModel
 		}
         public Guid ID { get; set; }
 
-        public TeamViewModel(string teamName)
+        public TeamViewModel()
         {
             _team = new Animal[5];
-            TeamName = teamName;
         }
 
         public void AddAnimal(Animal animal)
