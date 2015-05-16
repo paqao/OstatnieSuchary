@@ -8,6 +8,8 @@ namespace OstatnieSuchary.Model
 {
     class Lion : Animal
     {
+        string imgPath = "../Assets/lion200.png";
+
         public Lion(string name) : base(name, AnimalType.Lion)
 		{
         }
